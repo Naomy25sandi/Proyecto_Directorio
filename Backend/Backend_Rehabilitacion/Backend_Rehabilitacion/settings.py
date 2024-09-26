@@ -37,7 +37,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'cuentas',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'corsheaders',
 ]
+
+CORS_ALLOWED_ALL_ORIGINS = True
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -47,6 +53,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'Backend_Rehabilitacion.urls'
@@ -75,8 +82,12 @@ WSGI_APPLICATION = 'Backend_Rehabilitacion.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': "Centro_Rehabilitacion",
+        "USER": "root",
+        "PASSWORD": "Naomyyluis2510",
+        "HOST": "localhost",
+        "PORT": "3306"
     }
 }
 
