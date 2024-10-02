@@ -1,42 +1,133 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+
+
+/* Registro.css */
+.register-container {
+  display: flex;
+  flex-direction: column; /* Cambia a columna en pantallas pequeñas */
+  height: 100vh; /* Ocupa toda la altura de la ventana */
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.register-image {
+  flex: 1;
+  background-color: #f0f0f0; /* Color de fondo */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+.register-image img {
+  max-width: 100%;
+  height: auto;
+}
+
+.register-form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.register-form h2 {
+  margin-bottom: 10px;
+}
+
+.register-form p {
+  margin-bottom: 20px;
+}
+
+.register-form input {
+  width: 100%;
+  max-width: 400px; /* Máximo ancho para entradas */
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.register-form a {
+  color: blue; /* Cambia el color según tu diseño */
+  text-decoration: underline;
+}
+
+.register-form a:hover {
+  text-decoration: none; /* Efecto hover */
+}
+
+/* Media Queries para Responsividad */
+@media (min-width: 768px) {
+  .register-container {
+      flex-direction: row; /* Mantener fila en pantallas más grandes */
   }
-  to {
-    transform: rotate(360deg);
+
+  .register-form {
+      padding: 40px; /* Más espacio en pantallas grandes */
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+/* Login.css */
+.login-container {
+  display: flex;
+  flex-direction: column; /* Cambia a columna en pantallas pequeñas */
+  height: 100vh; /* Ocupa toda la altura de la ventana */
+}
+
+.login-image {
+  flex: 1;
+  background-color: #f0f0f0; /* Color de fondo */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-image img {
+  max-width: 100%;
+  height: auto;
+}
+
+.login-form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.login-form h2 {
+  margin-bottom: 10px;
+}
+
+.login-form input {
+  width: 100%;
+  max-width: 400px; /* Máximo ancho para entradas */
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.register-link {
+  margin-top: 20px;
+}
+
+.register-link a {
+  color: blue; /* Cambia el color según tu diseño */
+  text-decoration: underline;
+}
+
+.register-link a:hover {
+  text-decoration: none; /* Efecto hover */
+}
+
+/* Media Queries para Responsividad */
+@media (min-width: 768px) {
+  .login-container {
+      flex-direction: row; /* Mantener fila en pantallas más grandes */
   }
-}
 
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+  .login-form {
+      padding: 40px; /* Más espacio en pantallas grandes */
+  }
 }
