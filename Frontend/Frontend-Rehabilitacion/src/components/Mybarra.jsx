@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Barra = () => {
+const Mybarra = () => {
   return (
     <div>
       
@@ -8,4 +8,5 @@ const Barra = () => {
   )
 }
 
-export default Barra
+export default Mybarra
+
