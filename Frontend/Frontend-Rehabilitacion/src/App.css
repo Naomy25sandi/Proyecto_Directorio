@@ -126,8 +126,52 @@
   .login-container {
       flex-direction: row; /* Mantener fila en pantallas más grandes */
   }
+ /* Estilos Navbar*/
+ }
 
-  .login-form {
-      padding: 40px; /* Más espacio en pantallas grandes */
-  }
+ .header {
+  background-color: rgb(123, 123, 129);
+  padding: 20px ;
+  border: none; 
+  margin: 0; 
 }
+
+.header .logo img {
+  height: 150px;
+  transition: all 0.3s;
+}
+
+.header .logo img:hover {
+  transform: scale(1.2);
+}
+
+.nav-links {
+  list-style: none;
+}
+
+.nav-links .nav-item {
+  display: flex;
+ padding: 30px;
+}
+
+.nav-links .nav-link {
+  font-size: 600;
+  color: rgb(213, 205, 196);
+  text-decoration: none;
+}
+
+.navbar-toggler {
+  border: none; /* Elimina el borde del botón */
+}
+
+.btn {
+  margin-left: auto; /* Alinear el botón a la derecha */
+}
+
+/* Estilos responsivos (opcional) */
+@media (max-width: 768px) {
+  .header .nav-links {
+    flex-direction: column; /* Apilar enlaces en pantallas pequeñas */
+    padding: 10px 0; /* Espacio adicional */
+  }
+} 

@@ -1,7 +1,7 @@
 import { useState } from 'react'
-
 import './App.css'
-import Login from './routes/Login'
+import Navbar from './components/Navbar'
+import Mycard from './components/Mycard'
 
 
 function App() {
@@ -9,7 +9,9 @@ function App() {
 
   return (
     <>
-       <Login/>
+      <Navbar/>
+      <Mycard/>
+      <Mycard/>
     </>
   )
 }

@@ -5,10 +5,10 @@ import Button from '../components/Button';
 const Login = () => {
     const handleLogin = (e) => {
         e.preventDefault();
-        // Lógica para manejar el inicio de sesión
+        // Logica para manejar el inicio de sesion y la funcion para recargar la pagina, preguntar si esto se hace dentro del use effect
     };
 
-    return (
+    return ( // preguntar como hago para separar este registro si ya tiene la funcion incluida
         <div className="login-container">
             <div className="login-image">
                 <img src="src/assets/corazon.avif" alt="Inicio Sesión" />

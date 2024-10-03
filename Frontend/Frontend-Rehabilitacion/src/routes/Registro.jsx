@@ -3,6 +3,8 @@ import Button from '../components/Button'
 
 
 const Registro = () => {
+
+
   
  const handleRegister = (e) => {
           e.preventDefault();
