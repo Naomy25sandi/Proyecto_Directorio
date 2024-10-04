@@ -21,7 +21,7 @@ const Mybarra = () => {
                 <select id="genero">
                     <option value="">Seleccione</option>
                     <option value="masculino">Masculino</option>
-                    <option value="femenino">Femenino</option>
+                    <option value="mixto">Mixto</option>  
                 </select>
             </div>
             <div>
