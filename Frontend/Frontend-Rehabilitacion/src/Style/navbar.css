@@ -1,0 +1,47 @@
+.header {
+    background-color: rgb(123, 123, 129);
+    padding: 20px ;
+    border: none; 
+    margin: 0; 
+  }
+  
+  .header .logo img {
+    height: 150px;
+    transition: all 0.3s;
+  }
+  
+  .header .logo img:hover {
+    transform: scale(1.2);
+  }
+  
+  .nav-links {
+    list-style: none;
+  }
+  
+  .nav-links .nav-item {
+    display: flex;
+   padding: 30px;
+  }
+  
+  .nav-links .nav-link {
+    font-size: 600;
+    color: rgb(213, 205, 196);
+    text-decoration: none;
+  }
+  
+  .navbar-toggler {
+    border: none; 
+  }
+  
+  .btn {
+    margin-left: auto;
+  }
+  
+  /* Estilos responsivos  */
+  @media (max-width: 768px) {
+    .header .nav-links {
+      flex-direction: column; 
+      padding: 10px 0; 
+    }
+  } 
+  

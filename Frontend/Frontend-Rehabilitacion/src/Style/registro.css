@@ -1,0 +1,66 @@
+/* Registro.css */
+.register-container {
+    display: flex;
+    flex-direction: column; /* pantallas pequeñas */
+    height: 100vh;
+  }
+  
+  .register-image {
+    flex: 1;
+    background-color: #f0f0f0; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .register-image img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .register-form {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .register-form h2 {
+    margin-bottom: 10px;
+  }
+  
+  .register-form p {
+    margin-bottom: 20px;
+  }
+  
+  .register-form input {
+    width: 100%;
+    max-width: 400px; /* ancho  */
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .register-form a {
+    color: blue; 
+    text-decoration: underline;
+  }
+  
+  .register-form a:hover {
+    text-decoration: none; /* Efecto hover */
+  }
+  
+  /* Media Queries para Responsividad */
+  @media (min-width: 768px) {
+    .register-container {
+        flex-direction: row; 
+    }
+  
+    .register-form {
+        padding: 40px; /*  pantallas grandes */
+    }
+  }
+  
