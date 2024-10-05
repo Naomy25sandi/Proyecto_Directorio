@@ -38,3 +38,16 @@ class RegistroView(APIView):
 
         nuevo_usuario = User.objects.create_user(username=username,email=email, password=password,last_name=last_name) # creamos un nuevo usuario   
         return Response({'success': 'Usuario creado'}, status=status.HTTP_201_CREATED) # creamos nuevo usuario
+
+class LoginView(APIView):
+    def post(self,request):
+        username = request.data.get('username')
+        password = request.data.get('password')
+
+        usuario = authenticate(username=username, password=password) # autenticamos al usuario
+
+        if usuario is None: # si no existe el usuario
+            return Response({'error': 'Credenciales inválidas'}, status=status.HTTP_400_BAD_REQUEST)
+
+        token, created = Token.objects.get_or_create(user=username) # creamos un token para el usuario
+        return Response({'token': token.key}, status=status.HTTP_200_OK) # retornamos el token
