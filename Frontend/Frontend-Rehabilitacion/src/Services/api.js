@@ -28,9 +28,21 @@ const postData = async (obj, endpoint) => {
             },
             body: JSON.stringify(obj),
         });
-        const data = await response.json();
-        console.log(data);
-        return data;
+        const respuesta = await response.json();
+        if(!response.ok){
+            Swal.fire({
+                icon: 'error',
+                title: "Error en la petición",
+                text: respuesta.error,
+            })
+        }else{
+            Swal.fire({
+                icon: 'success',
+                title: "Exito",
+                text: respuesta.success,
+            })
+        }
+        return respuesta
     } catch (error) {
         console.log(error);
     }

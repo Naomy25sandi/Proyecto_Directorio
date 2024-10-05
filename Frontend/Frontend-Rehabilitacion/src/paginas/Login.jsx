@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from '../components/Button'; 
-
+import '../Style/login.css'
 
 const Login = () => {
     const handleLogin = (e) => {
