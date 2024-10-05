@@ -19,11 +19,15 @@ const Footer = () => {
           </div>
 
           <div className="col-xs-12 col-md-lg-6 col-lg-3">
-             <p className='h-5'>Encuentrános</p>
+             <p className='h-5'>Nuestra ubicación</p>
+             <p>Estamos ubicados en Jardín de Lourdes, Piedades de Santa Ana, Costa Rica.</p>
+             
           </div>
 
           <div className="col-xs-12 col-md-lg-6 col-lg-3">
-             <p className='h-5'>Columna</p>
+             <p className='h-5'>Contacto</p>
+             <p>Email: <a href="mailto:info@renacer.com">info@renacer.com</a></p>
+             <p>Teléfono: <a href="tel:+1234567890">(561)85657138 </a></p>
           </div>
         
         </div>
