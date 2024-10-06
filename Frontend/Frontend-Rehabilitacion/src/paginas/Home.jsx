@@ -1,11 +1,11 @@
 import React from 'react'
-
+import Mybarra from '../components/Mybarra'
 
 
 const Home = () => {
   return (
     <div>
-     <p>Hola</p>
+     <Mybarra/>
     </div>
   )
 }

@@ -3,10 +3,11 @@ import LoginForm from '../components/Loginform';
 import { postData } from '../Services/api';
 import Swal from 'sweetalert2';
 import '../Style/login.css';
-
+import { useNavigate } from 'react-router-dom';
 const Login = () => {
     const [correo, setCorreo] = useState("");
     const [clave, setClave] = useState("");
+    const navigate = useNavigate()
 
     const validaUsuario = async (e) => {
         e.preventDefault();
@@ -24,7 +25,10 @@ const Login = () => {
             password: clave
         };
 
-        await postData(usuario, "/");
+        const respuesta = await postData(usuario, "inicio/");
+        if (respuesta.success){
+            navigate('/')
+        }
     };
 
     return (
@@ -32,11 +36,11 @@ const Login = () => {
             <div className="login-image">
                 <img src="src/assets/corazon.avif" alt="Inicio Sesión" />
             </div>
-            <LoginForm 
-                alEnviar={validaUsuario} 
-                setCorreo={setCorreo} 
-                setClave={setClave} 
-                correo={correo} 
+            <LoginForm
+                alEnviar={validaUsuario}
+                setCorreo={setCorreo}
+                setClave={setClave}
+                correo={correo}
                 clave={clave}
             />
         </div>

@@ -41,15 +41,17 @@ class RegistroView(APIView):
 
 class LoginView(APIView):
     def post(self,request):
-        username = request.data.get('username')
+        email = request.data.get('email')
         password = request.data.get('password')
 
-        usuario = authenticate(username=username, password=password) # autenticamos al usuario
+        usuario = User.objects.get(email=email) # obtenemos el usuario por el email
+
+        usuario = authenticate(request,username=usuario.username, password=password) # autenticamos al usuario
 
         if usuario is None: # si no existe el usuario
             return Response({'error': 'Credenciales inválidas'}, status=status.HTTP_400_BAD_REQUEST)
-
-        token, created = Token.objects.get_or_create(user=username) # creamos un token para el usuario
-        return Response({'token': token.key}, status=status.HTTP_200_OK) # retornamos el token
+        else:
+            token, created = Token.objects.get_or_create(user=usuario) # creamos un token para el usuario
+            return Response({'success': f' Usuario valido {token.key}'}, status=status.HTTP_200_OK) # retornamos el token
     
     #tengo dudas para crear estas validaciones?
