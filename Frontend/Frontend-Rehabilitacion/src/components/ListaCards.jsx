@@ -1,6 +1,18 @@
-const ListaCards = ({ cards })  = > {
+import Mycard from "./Mycard";
+
+const ListaCards = ({ cards }) => {
     return (
-        <></>
-    )
-}
-ex[]p
+        <div className="card">
+            {cards.map(card => (
+                <Mycard
+                    key={card.id}
+                    nombre={card.nombre}
+                    descripcion={card.descripcion}
+                    img={card.img}
+                />
+            ))}
+        </div>
+    );
+};
+
+export default ListaCards;

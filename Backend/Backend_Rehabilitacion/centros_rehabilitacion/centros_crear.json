@@ -1,0 +1,35 @@
+[{
+    "nombre": "Centro de Rehabilitación de la Universidad de Costa Rica",
+    "descripcion": "Centro de Rehabilitación de la Universidad de Costa Rica",
+    "telefono": "2511-0000",
+    "estado": 1,
+    "precio": 1500,
+    "imagen": "https://www.ucr.ac.cr/actividades/2019/09/09/centro-de-rehabilitacion-de-la-ucr-recibio-donacion-de-equipos-de-terapia-fisica/centro-de-rehabilitacion-de-la-ucr-recibio-donacion-de-equipos-de-terapia-fisica.jpg"
+},
+{
+    "nombre": "Centro de Rehabilitación Heredia",
+    "descripcion": "Centro de Rehabilitación con servicios de fisioterapia y rehabilitación en Heredia",
+    "telefono": "2233-4455",
+    "estado": 1,
+    "precio": 1800,
+    "imagen": "https://example.com/centro-rehabilitacion-heredia.jpg"
+}
+,
+{
+    "nombre": "Centro de Rehabilitación Alajuela",
+    "descripcion": "Centro de Rehabilitación con servicios integrales en Alajuela",
+    "telefono": "2444-5566",
+    "estado": 1,
+    "precio": 1700,
+    "imagen": "https://example.com/centro-rehabilitacion-alajuela.jpg"
+}
+,
+{
+    "nombre": "Centro de Rehabilitación San José",
+    "descripcion": "Centro de Rehabilitación especializado en terapias físicas y ocupacionales en San José",
+    "telefono": "2222-3333",
+    "estado": 1,
+    "precio": 2000,
+    "imagen": "https://example.com/centro-rehabilitacion-sj.jpg"
+}
+]
