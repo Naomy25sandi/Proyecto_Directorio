@@ -13,11 +13,11 @@ const Registro = () => {
     const registrarCuenta = async (e) => {
         e.preventDefault();
         if (nombre.trim() === "" || apellidos.trim() === "" || correo.trim() === "" || clave.trim() === "") {
-            // Swal.fire({
-            //     icon: 'error',
-            //     title: 'Oops...',
-            //     text: 'Completa todos los campos',
-            // });
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Completa todos los campos',
+            });
             return;
         }
 
@@ -28,7 +28,7 @@ const Registro = () => {
             password: clave
         };
 
-        await postData(usuario, "registro/");
+        await postData(usuario, "inicio/");
     };
 
     return (
@@ -40,7 +40,7 @@ const Registro = () => {
                 <div className="register-form">
                     <h2>Regístrate</h2>
                     <p>
-                        O <a href="/login">inicia sesión</a>
+                        O <a href="/inicio">inicia sesión</a>
                     </p>
                     <form onSubmit={registrarCuenta}>
                         <input

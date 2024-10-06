@@ -1,29 +1,44 @@
-import React from 'react';
-import Button from '../components/Button'; 
-import '../Style/login.css'
+import React, { useState } from 'react';
+import LoginForm from '../components/Loginform';
+import { postData } from '../Services/api';
+import Swal from 'sweetalert2';
+import '../Style/login.css';
 
 const Login = () => {
-    const handleLogin = (e) => {
+    const [correo, setCorreo] = useState("");
+    const [clave, setClave] = useState("");
+
+    const validaUsuario = async (e) => {
         e.preventDefault();
-        // Logica para manejar el inicio de sesion y la funcion para recargar la pagina, preguntar si esto se hace dentro del use effect
+        if (correo.trim() === "" || clave.trim() === "") {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Completa todos los campos',
+            });
+            return;
+        }
+
+        const usuario = {
+            email: correo,
+            password: clave
+        };
+
+        await postData(usuario, "/");
     };
 
-    return ( // preguntar como hago para separar este registro si ya tiene la funcion incluida
+    return (
         <div className="login-container">
             <div className="login-image">
                 <img src="src/assets/corazon.avif" alt="Inicio Sesión" />
             </div>
-            <div className="login-form">
-                <h2>Inicia Sesión</h2>
-                <form onSubmit={handleLogin}>
-                    <input type="email" placeholder="Correo Electrónico" required />
-                    <input type="password" placeholder="Contraseña" required />
-                    <Button titulo="Inicia Sesión" type="submit" />
-                </form>
-                <p className="register-link">
-                    No tienes cuenta? <a href="/register">Regístrate aquí</a>
-                </p>
-            </div>
+            <LoginForm 
+                alEnviar={validaUsuario} 
+                setCorreo={setCorreo} 
+                setClave={setClave} 
+                correo={correo} 
+                clave={clave}
+            />
         </div>
     );
 };

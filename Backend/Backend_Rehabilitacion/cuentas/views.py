@@ -51,3 +51,5 @@ class LoginView(APIView):
 
         token, created = Token.objects.get_or_create(user=username) # creamos un token para el usuario
         return Response({'token': token.key}, status=status.HTTP_200_OK) # retornamos el token
+    
+    #tengo dudas para crear estas validaciones?
