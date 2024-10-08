@@ -3,9 +3,12 @@ import Mybarra from '../components/Mybarra'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import ListaCards from '../components/ListaCards'
+import Map from '../components/Map'
 import { useState, useEffect } from 'react'
 import { GetData } from '../Services/api'
 import '../Style/Home.css'
+
+
 const Home = () => {
   const [centros, setCentros] = useState([])
 
@@ -24,6 +27,7 @@ const Home = () => {
       <div className='lista-centros'>
         <ListaCards cards={centros} />
       </div>
+      <Map/>
       <Footer />
     </>
   )
