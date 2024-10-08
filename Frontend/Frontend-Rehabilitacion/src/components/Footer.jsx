@@ -1,6 +1,13 @@
 import React from 'react'
+import Modales from './Modales'
+import { useState } from 'react';
+
 
 const Footer = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
   return (
     <div className='container-fluid'>
 
@@ -19,8 +26,9 @@ const Footer = () => {
           </div>
 
           <div className="col-xs-12 col-md-lg-6 col-lg-3">
-             <p className='h-5'>Nuestra ubicación</p>
-             <p>Estamos ubicados en Jardín de Lourdes, Piedades de Santa Ana, Costa Rica.</p>
+          <a href="#" onClick={openModal}>Nuestra Ubicacion</a>
+          <Modales isOpen={isModalOpen} onClose={closeModal} />
+          <p>Estamos ubicados en Jardín de Lourdes, Piedades de Santa Ana, Costa Rica.</p>
              
           </div>
 

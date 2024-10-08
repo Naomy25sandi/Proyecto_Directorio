@@ -1,12 +1,18 @@
 
 import React from 'react';
 import Button from './Button';
+import Contacto from '../components/Contacto';
+import { useState } from 'react';
 import '../Style/navbar.css'
 
 
 
 
 const Navbar = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
   return (
     <header className="header">
       <nav className="navbar navbar-expand-lg navbar">
@@ -38,7 +44,8 @@ const Navbar = () => {
               </li>
             </ul>
             <a href="#" className="btn">
-              <Button className="btn btn-primary" titulo ='Contáctenos'/>
+              <Button className="btn btn-primary" titulo ='Contáctenos' evento={openModal}/>
+              <Contacto isOpen={isModalOpen} onClose={closeModal} />
             </a>
           </div>
         </div>

@@ -2,6 +2,7 @@ import React from 'react'
 
 
 
+
 const Mybarra = () => {
   return (
     <form >
@@ -29,7 +30,7 @@ const Mybarra = () => {
                 <label htmlFor="presupuesto">Presupuesto:</label>
                 <input type="number" id="presupuesto" />
             </div>
-            <button type="submit">Buscar</button>
+            <button type="submit" >Buscar</button>
         </form>
   )
 }

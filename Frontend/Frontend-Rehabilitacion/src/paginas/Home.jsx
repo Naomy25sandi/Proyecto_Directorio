@@ -27,7 +27,7 @@ const Home = () => {
       <div className='lista-centros'>
         <ListaCards cards={centros} />
       </div>
-      <Map/>
+    
       <Footer />
     </>
   )
