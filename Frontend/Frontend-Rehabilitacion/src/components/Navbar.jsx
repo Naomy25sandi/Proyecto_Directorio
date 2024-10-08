@@ -1,5 +1,7 @@
 
 import React from 'react';
+import Button from './Button';
+import '../Style/navbar.css'
 
 
 
@@ -36,7 +38,7 @@ const Navbar = () => {
               </li>
             </ul>
             <a href="#" className="btn">
-              <button className="btn btn-primary">Contact</button>
+              <Button className="btn btn-primary" titulo ='Contáctenos'/>
             </a>
           </div>
         </div>
