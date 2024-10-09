@@ -1,4 +1,5 @@
 import React from 'react'
+import Button from './Button';
 import '../Style/contacto.css'
 
 const Contacto = ({ isOpen, onClose }) => {
@@ -6,11 +7,16 @@ const Contacto = ({ isOpen, onClose }) => {
   return (
  <div className="modal-overlay">
  <   div className="modal-content">
-     <p className='h-5'>Contacto</p>
+     <p className='h-5'>Contactenos</p>
+     <div className='input_container'>
+     <input type="text" placeholder='Nombre'/>
+     <input type="text" placeholder='Su correo'/>
+     <input type="text" placeholder='Mensaje'/>
+     </div>
      <p>Email: <a href="mailto:info@renacer.com">info@renacer.com</a></p>
      <p>Teléfono: <a href="tel:+1234567890">(561)85657138 </a></p>
 
-    <button onClick={onClose}>Cerrar</button>
+    <Button evento={onClose} titulo='Cerrar'/>
     </div>
  </div>
   )
