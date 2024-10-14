@@ -3,15 +3,29 @@ import Button from '../components/Button';
 import { postData } from '../Services/api';
 import Swal from "sweetalert2";
 import '../Style/registro.css';
+import { useNavigate } from 'react-router-dom';
 
+
+// Definimos los estados para manejar la información del formulario
 const Registro = () => {
     const [nombre, setNombre] = useState("");
     const [apellidos, setApellidos] = useState("");
     const [correo, setCorreo] = useState("");
     const [clave, setClave] = useState("");
-
+    const [cargando, setCargando] = useState(false);// Estado para indicar si se está cargando
+    const navigate = useNavigate();
+     
+    const validarEmail = (email) => {// fncion para validar caracteres especiales 
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(String(email).toLowerCase());//  Verifica si el correo cumple con la expresion
+    };
+    
+    // Función para manejar el registro del usuario
     const registrarCuenta = async (e) => {
-        e.preventDefault();
+        e.preventDefault();// prevenir que se recargue
+
+
+        // Validamos que todos los campos estén llenos
         if (nombre.trim() === "" || apellidos.trim() === "" || correo.trim() === "" || clave.trim() === "") {
             Swal.fire({
                 icon: 'error',
@@ -20,7 +34,16 @@ const Registro = () => {
             });
             return;
         }
-
+         // Validamos que el correo electrónico sea válido
+        if (!validarEmail(correo)) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Correo electrónico inválido',
+            });
+            return;
+        }
+       // creamos usuario para almacenar la información de cada input del formulario
         const usuario = {
             username: nombre,
             last_name: apellidos,
@@ -28,7 +51,25 @@ const Registro = () => {
             password: clave
         };
 
-        await postData(usuario, "registro/");
+        setCargando(true); // activa el estado de carga
+        // con la variable respuesta llamamos el metodo para enviar la información Backend
+        const respuesta = await postData(usuario, "registro/");
+        setCargando(false); // Desactivar estado de carga
+            
+        if (respuesta && respuesta.success) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Registro exitoso',
+                text: 'Bienvenido!',
+            });
+            navigate("/inicio"); // Redirige a inicio de sesión
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: respuesta.error || 'Ocurrió un error al registrarte',
+            });
+        }
     };
 
     return (
@@ -56,7 +97,7 @@ const Registro = () => {
                             onChange={(e) => setApellidos(e.target.value)}
                         />
                         <input
-                            type="text"
+                            type="email" 
                             placeholder="Correo Electrónico"
                             value={correo}
                             onChange={(e) => setCorreo(e.target.value)}
@@ -67,7 +108,7 @@ const Registro = () => {
                             value={clave}
                             onChange={(e) => setClave(e.target.value)}
                         />
-                        <Button titulo="Registrarse" type="submit" />
+                        <Button titulo="Registrarse" type="submit" disabled={cargando} />
                     </form>
                 </div>
             </div>

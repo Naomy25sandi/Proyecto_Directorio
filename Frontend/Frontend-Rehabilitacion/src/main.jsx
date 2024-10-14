@@ -23,6 +23,10 @@ const router = createBrowserRouter([
     path: "/micuenta",
     element: <Micuenta />
   },
+  {
+    // path: "/",
+    // element: 
+  }
 ]);
 
 createRoot(document.getElementById('root')).render(
