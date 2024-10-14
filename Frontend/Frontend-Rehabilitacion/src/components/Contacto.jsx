@@ -13,8 +13,8 @@ const Contacto = ({ isOpen, onClose }) => {
      <input type="text" placeholder='Su correo'/>
      <input type="text" placeholder='Mensaje'/>
      </div>
-     <p>Email: <a href="mailto:info@renacer.com">info@renacer.com</a></p>
-     <p>Teléfono: <a href="tel:+1234567890">(561)85657138 </a></p>
+     <a href="mailto:info@renacer.com">Email:info@renacer.com</a>
+     <a href="tel:+1234567890">Teléfono:(561)85657138 </a>
 
     <Button evento={onClose} titulo='Cerrar'/>
     </div>

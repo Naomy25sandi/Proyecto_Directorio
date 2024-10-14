@@ -28,7 +28,7 @@ const Registro = () => {
             password: clave
         };
 
-        await postData(usuario, "inicio/");
+        await postData(usuario, "registro/");
     };
 
     return (

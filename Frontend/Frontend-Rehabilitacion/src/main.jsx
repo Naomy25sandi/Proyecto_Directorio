@@ -4,6 +4,7 @@ import App from './App.jsx'
 import './index.css'
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import Login from './paginas/Login.jsx'
+import Micuenta from './paginas/Micuenta.jsx'
 import Registro from './paginas/Registro.jsx'
 const router = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
   {
     path: "/registro",
     element: <Registro />
+  },
+  {
+    path: "/micuenta",
+    element: <Micuenta />
   },
 ]);
 
