@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from datetime import timedelta
+from datetime import timedelta  #token
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -31,7 +31,7 @@ INSTALLED_APPS = [
     'centros_rehabilitacion',
     'rest_framework',
     'rest_framework.authtoken',
-    'rest_framework_simplejwt',
+    'rest_framework_simplejwt', #update y delete 
     'corsheaders',
 ]
 
@@ -53,7 +53,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware'
 ]
 
-
+# token 
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(days=5),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),

@@ -1,6 +1,7 @@
 from django.urls import path
 from .views import CentroView,CentroUpdateView,CentroDeleteView
 # usamos para comunicarnos con el path
+
 urlpatterns = [
     path('api/centros/',CentroView.as_view(),name='centros_list'),
     path('api/centrosUpdate/<int:id>',CentroUpdateView.as_view(),name='centros_list_update'),
