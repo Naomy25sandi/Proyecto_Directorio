@@ -9,9 +9,9 @@ const Contacto = ({ isOpen, onClose }) => {
  <   div className="modal-content">
      <p className='h-5'>Contactenos</p>
      <div className='input_container'>
-     <input type="text" placeholder='Nombre'/>
-     <input type="text" placeholder='Su correo'/>
-     <input type="text" placeholder='Mensaje'/>
+     <input className='input' type="text" placeholder='Nombre'/>
+     <input className='input' type="text" placeholder='Su correo'/>
+     <input className='input2' type="text" placeholder='Mensaje'/>
      </div>
      <a href="mailto:info@renacer.com">Email:info@renacer.com</a>
      <a href="tel:+1234567890">Teléfono:(561)85657138 </a>

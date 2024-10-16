@@ -4,13 +4,21 @@ import { postData } from '../Services/api';
 import Swal from 'sweetalert2';
 import '../Style/login.css';
 import { useNavigate } from 'react-router-dom';
+
 const Login = () => {
     const [correo, setCorreo] = useState("");
     const [clave, setClave] = useState("");
-    const navigate = useNavigate()
+    const [cargando, setCargando] = useState(false); // Estado para indicar si se está cargando
+    const navigate = useNavigate();
+
+    const validarEmail = (email) => {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(String(email).toLowerCase());
+    };
 
     const validaUsuario = async (e) => {
         e.preventDefault();
+
         if (correo.trim() === "" || clave.trim() === "") {
             Swal.fire({
                 icon: 'error',
@@ -20,14 +28,46 @@ const Login = () => {
             return;
         }
 
+        if (!validarEmail(correo)) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Correo electrónico inválido',
+            });
+            return;
+        }
+
         const usuario = {
             email: correo,
             password: clave
         };
 
-        const respuesta = await postData(usuario, "inicio/");
-        if (respuesta.success){
-            navigate('/')
+        setCargando(true);
+        try {
+            const respuesta = await postData(usuario, "inicio/");
+            setCargando(false);
+            
+            if (respuesta && respuesta.success) {
+                Swal.fire({
+                    icon: 'success',
+                    title: '¡Bienvenido!',
+                    text: 'Has iniciado sesión correctamente.',
+                });
+                navigate('/');
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: respuesta.message || 'Credenciales incorrectas',
+                });
+            }
+        } catch (error) {
+            setCargando(false);
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'No se pudo iniciar sesión. Intenta de nuevo.',
+            });
         }
     };
 
@@ -42,9 +82,11 @@ const Login = () => {
                 setClave={setClave}
                 correo={correo}
                 clave={clave}
+                cargando={cargando}
             />
         </div>
     );
 };
 
 export default Login;
+
