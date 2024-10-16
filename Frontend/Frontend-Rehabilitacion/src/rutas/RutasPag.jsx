@@ -3,6 +3,7 @@ import Home from '../paginas/Home';
 import Login from '../paginas/Login';
 import Registro from '../paginas/Registro';
 import Micuenta from '../paginas/Micuenta';
+import Admin from '../paginas/Admin';
 
 
 const RutasPag = () => {
@@ -12,6 +13,7 @@ const RutasPag = () => {
             <Route path='/inicio' element={<Login />} />
             <Route path='/Registro' element={<Registro/>} /> 
             <Route path='/micuenta' element={<Micuenta/>} />
+            <Route path='/admin' element={<Admin/>}/>
 
         </Routes>
     )

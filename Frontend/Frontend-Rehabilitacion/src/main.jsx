@@ -6,6 +6,9 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import Login from './paginas/Login.jsx'
 import Micuenta from './paginas/Micuenta.jsx'
 import Registro from './paginas/Registro.jsx'
+import Admin from './paginas/Admin.jsx'
+
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -24,8 +27,8 @@ const router = createBrowserRouter([
     element: <Micuenta />
   },
   {
-    // path: "/",
-    // element: 
+    path: "/admin",
+    element: <Admin/>
   }
 ]);
 
