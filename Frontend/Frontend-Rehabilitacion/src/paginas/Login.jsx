@@ -4,6 +4,7 @@ import { postData } from '../Services/api';
 import Swal from 'sweetalert2';
 import '../Style/login.css';
 import { useNavigate } from 'react-router-dom';
+import { crearCookie } from '../Services/cookies';
 
 const Login = () => {
     const [correo, setCorreo] = useState("");
@@ -53,6 +54,10 @@ const Login = () => {
                     title: '¡Bienvenido!',
                     text: 'Has iniciado sesión correctamente.',
                 });
+                console.log(respuesta.super);
+                console.log(respuesta.usuario);
+                crearCookie("super",respuesta.super,1);
+                crearCookie("usuario", respuesta.usuario,1);
                 navigate('/');
             } else {
                 Swal.fire({

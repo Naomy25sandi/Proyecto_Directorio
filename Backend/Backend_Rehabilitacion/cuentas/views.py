@@ -53,7 +53,30 @@ class LoginView(APIView):
             return Response({'error': 'Credenciales inválidas'}, status=status.HTTP_400_BAD_REQUEST)
         else:
             refresh = RefreshToken.for_user(usuario)
-            token, created = Token.objects.get_or_create(user=usuario) # creamos un token para el usuario
-            return Response({'success': f' Usuario valido {token.key}','token_acceso':str(refresh.access_token),'token_refresco':str(refresh)}, status=status.HTTP_200_OK) # retornamos el token
+             # creamos un token para el usuario
+            return Response({'success': f' Usuario valido es super usuario?','usuario':{usuario.id},'super':{usuario.is_superuser},'token_acceso':str(refresh.access_token),'token_refresco':str(refresh)}, status=status.HTTP_200_OK) # retornamos el token
     
-    #tengo dudas para crear estas validaciones?
+    #tengo dudas para crear estas validaciones? 
+
+class RegistroAdminView(APIView):
+    def post(self,request):# Peticion
+        username = request.data.get('username')
+        email = request.data.get('email')
+        password = request.data.get('password')
+
+        if User.objects.filter(email=email).exists():# usuario ya existe
+            return Response({'error': 'Usuario ya existe'}, status=status.HTTP_400_BAD_REQUEST)
+        
+        #Validación para la contraseña
+        if len(password) < 8:
+            return Response({'error': 'La contraseña debe tener 8 o más carácteres'}, status=status.HTTP_400_BAD_REQUEST)
+        
+        if not re.search(r'\d',password):
+            return Response({'error': 'La contraseña debe al menos un un número'}, status=status.HTTP_400_BAD_REQUEST)
+
+        if not re.search(r'[!@#$%^&*(),.?":{}|<>]',password):
+            return Response({'error': 'La contraseña debe tener al menos un carácter especial'}, status=status.HTTP_400_BAD_REQUEST)
+
+
+        nuevo_usuario = User.objects.create_superuser(username=username,email=email,password=password) # creamos un nuevo usuario   
+        return Response({'success': 'Usuario creado'}, status=status.HTTP_201_CREATED) # creamos nuevo usuario

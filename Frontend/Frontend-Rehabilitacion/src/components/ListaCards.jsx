@@ -2,7 +2,7 @@ import { deleteProductos } from "../Services/api";
 import Mycard from "./Mycard";
 
 
-const ListaCards = ({ cards }) => {
+const ListaCards = ({ cards,mostrarBotones }) => {
     const eliminarDato = async (id) => {
         console.log(id);
         await deleteProductos(id, "centros/api/centrosDelete");
@@ -16,6 +16,7 @@ const ListaCards = ({ cards }) => {
                     descripcion={card.descripcion}
                     img={card.img}
                     btnEliminar={() => eliminarDato(card.id)}
+                    mostrarBotones={mostrarBotones}
                 />
             ))}
         </div>
