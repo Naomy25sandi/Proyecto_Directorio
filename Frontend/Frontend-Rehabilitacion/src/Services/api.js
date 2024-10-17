@@ -3,7 +3,6 @@ const API_URL = "http://127.0.0.1:8000/";
 // Método para obtener datos
 const GetData = async (endpoint) => {
     try {
-        console.log(endpoint);
         let response = await fetch(`${API_URL}${endpoint}`, {
             method: "GET",
             mode: "cors",
@@ -74,6 +73,8 @@ const actualizaDatos = async (id, datos, endpoint) => {
 };
 
 // Método para eliminar datos
+
+//centros/ api/centrosDelete/<int:id>
 const deleteProductos = async (id, endpoint) => {
     try {
         const response = await fetch(`${API_URL}${endpoint}/${id}`, {

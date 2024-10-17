@@ -18,14 +18,14 @@ const Home = () => {
       setCentros(centro)
     }
     traerCentros()
-  }, [])
+  }, [centros])
   return (
     <>
       <Navbar />
       <Mybarra />
       <h1 className="text-center mt-5">Centros de Rehabilitación</h1>
       <div className='lista-centros'>
-        <ListaCards cards={centros} />
+        {centros.length === 0 ? <h1>No hay centros</h1> : <ListaCards cards={centros} />}
       </div>
     
       <Footer />
