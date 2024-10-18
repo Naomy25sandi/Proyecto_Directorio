@@ -35,10 +35,10 @@ return (
       </Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={cerrar}>
-          Cerrar la vara esta
+          Cerrar
         </Button>
         <Button variant="primary" onClick={cerrar}>
-          Guarde esta mica
+          Guardar 
         </Button>
       </Modal.Footer>
     </Modal>

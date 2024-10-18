@@ -29,8 +29,6 @@ const Admin = () => {
       <Navbar />
 
       <ListaCards cards={centros} mostrarBotones={esAdmin} />
-
-      
       <ModalAggCentros mostrar={modal} cerrar={cerrarModal} abrir={abrirModal}/>
       <Footer />  
 

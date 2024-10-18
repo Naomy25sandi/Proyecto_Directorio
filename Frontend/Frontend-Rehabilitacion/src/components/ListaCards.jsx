@@ -13,7 +13,7 @@ const ListaCards = ({ cards,mostrarBotones }) => {
                 <Mycard
                     key={card.id}
                     nombre={card.nombre}
-                    descripcion={card.descripcion}
+                    descripcion={card.descripcion}// direccion, precio,telefono
                     img={card.img}
                     btnEliminar={() => eliminarDato(card.id)}
                     mostrarBotones={mostrarBotones}
