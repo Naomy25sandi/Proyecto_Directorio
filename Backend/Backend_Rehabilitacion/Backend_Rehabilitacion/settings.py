@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'rest_framework_simplejwt', #update y delete 
     'corsheaders',
+    'rest_framework_simplejwt.token_blacklist',
 ]
 
 #CORS_ALLOWED_ALL_ORIGINS = True
