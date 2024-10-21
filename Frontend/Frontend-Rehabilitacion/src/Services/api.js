@@ -1,4 +1,4 @@
-const API_URL = "http://127.0.0.1:8000/";
+const API_URL = "http://127.0.0.1:8000/"
 
 // Método para obtener datos
 const GetData = async (endpoint) => {
@@ -13,7 +13,7 @@ const GetData = async (endpoint) => {
         const datos = await response.json();
         return datos;
     } catch (error) {
-        console.log(error);
+        console.log(error)
     }
 };
 
@@ -27,17 +27,17 @@ const postData = async (obj, endpoint) => {
             },
             body: JSON.stringify(obj),
         });
-        const respuesta = await response.json();
+        const respuesta = await response.json()
         if (!response.ok) {
             // Swal.fire({
             //     icon: 'error',
             //     title: "Error en la petición",
             //     text: respuesta.error,
             // })
-            console.log(respuesta.error);
+            console.log(respuesta.error)
 
         } else {
-            console.log(respuesta.success);
+            console.log(respuesta.success)
             // Swal.fire({
             //     icon: 'success',
             //     title: "Exito",
@@ -46,7 +46,7 @@ const postData = async (obj, endpoint) => {
         }
         return respuesta
     } catch (error) {
-        console.log(error);
+        console.log(error)
     }
 };
 
@@ -62,12 +62,12 @@ const actualizaDatos = async (id, datos, endpoint) => {
         });
 
         if (!response.ok) {
-            throw new Error('Error al actualizar el producto');
+            throw new Error('Error al actualizar el producto')
         }
 
         return await response.json();
     } catch (error) {
-        console.error('Error en la función actualizaDatos:', error);
+        console.error('Error en la función actualizaDatos:', error)
         throw error;
     }
 };

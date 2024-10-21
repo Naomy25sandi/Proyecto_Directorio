@@ -4,8 +4,8 @@ import Mycard from "./Mycard";
 
 const ListaCards = ({ cards,mostrarBotones }) => {
     const eliminarDato = async (id) => {
-        console.log(id);
-        await deleteProductos(id, "centros/api/centrosDelete");
+        console.log(id)
+        await deleteProductos(id, "centros/api/centrosDelete")
     }
     return (
         <div className="card">
