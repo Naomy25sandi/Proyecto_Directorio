@@ -1,6 +1,7 @@
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import { useState } from 'react';
+import Swal from 'sweetalert2';
 
 const ModalAggCentros = ({mostrar,abrir,cerrar}) => { 
   const [nombreCentro, setNombreCentro] = useState('');
@@ -8,6 +9,18 @@ const ModalAggCentros = ({mostrar,abrir,cerrar}) => {
   const [telefonoCentro, setTelefonoCentro] = useState('');
   const [descripcionCentro, setDescripcionCentro] = useState('');
   const [precioCentro, setPrecioCentro] = useState('');
+
+  const subirCentro = async () => {
+    if (!nombreCentro || !direccionCentro || !telefonoCentro || !descripcionCentro)
+      Swal.fire({
+        icon: "error",
+        title: 'Error',
+        text: "Por favor, completa todos los campos",
+      });
+      return;
+  }
+
+ 
 return (
   <>
     <Button variant="primary" onClick={abrir}>
@@ -37,7 +50,7 @@ return (
         <Button variant="secondary" onClick={cerrar}>
           Cerrar
         </Button>
-        <Button variant="primary" onClick={cerrar}>
+        <Button variant="primary" onClick={subirCentro}>
           Guardar 
         </Button>
       </Modal.Footer>

@@ -3,6 +3,7 @@ from .models import User
 from .models import Blacklist
 
 
+
 # El serializer es una estructura que agrupa los campos de un modelo en un solo objeto
 class UserSerializer(serializers.ModelSerializer):
     class Meta:

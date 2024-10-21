@@ -9,7 +9,7 @@ from rest_framework_simplejwt.tokens import RefreshToken
 import re
 from rest_framework import viewsets
 from .models import Blacklist
-from serializers import BlacklistSerializer
+from .serializers import BlacklistSerializer
 
 # Create your views here.
 # # View es la logica y se tienen que conectar con las URL
