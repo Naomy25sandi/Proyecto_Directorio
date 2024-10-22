@@ -6,6 +6,7 @@ import ListaCards from '../components/ListaCards'
 import '../Style/Home.css'
 import { GetData } from '../Services/api'
 import { traerCookie } from '../Services/cookies'
+import Carrousel from '../components/Carrousel'
 
 const Home = () => {
   const [centros, setCentros] = useState([])
@@ -23,6 +24,7 @@ const Home = () => {
     <>
       <Navbar />
       <Mybarra />
+      <Carrousel/>
       <h1 className="text-center mt-5">Centros de Rehabilitación</h1>
       <div className='lista-centros'>
         {centros.length === 0 ? (
