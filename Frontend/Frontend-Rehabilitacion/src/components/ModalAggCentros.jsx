@@ -34,14 +34,25 @@ const ModalAggCentros = ({ mostrar, abrir, cerrar }) => {
     };
 
     const peticion = await postData(centro, 'centros/api/centros/');
+    console.log(peticion); //verificando la respuesta
     
-      if (peticion.status === 201) {
+    
+      if (peticion.success) { // error Keylor me ayudo habia un .status===201 
+        console.log("Centro agregado con éxito");
+
       Swal.fire({
         icon: 'success',
         title: 'Agregado',
         text: 'Agregado con éxito',
       });
+      onCentroAgregado();
       cerrar(); // Cerrar modal al agregar con éxito
+      setNombreCentro('');
+      setDireccionCentro('');
+      setTelefonoCentro('');
+      setDescripcionCentro('');
+      setPrecioCentro('');
+      setImagenCentro('');
     } else {
       Swal.fire({
         icon: 'error',
@@ -59,7 +70,7 @@ const ModalAggCentros = ({ mostrar, abrir, cerrar }) => {
       </Button>
 
       
-      <Modal show={mostrar} onHide={cerrar} >
+      <Modal  show={mostrar} onHide={cerrar} >
         <Modal.Header closeButton>
           <Modal.Title  id="modal-title">Agregar Centros</Modal.Title>
         </Modal.Header>

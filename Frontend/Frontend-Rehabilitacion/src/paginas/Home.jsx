@@ -31,7 +31,7 @@ const Home = () => {
           <ListaCards cards={centros} mostrarBotones={esAdmin} />
         )}
 
-        {/* <ModalAggCentros mostrar={modal} cerrar={cerrarModal} abrir={abrirModal}/> */}
+        
       </div>
       <Footer />
     </>

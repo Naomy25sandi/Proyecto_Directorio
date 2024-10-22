@@ -17,7 +17,6 @@ const GetData = async (endpoint) => {
     }
 };
 
-// Método para crear datos
 const postData = async (obj, endpoint) => {
     try {
         let response = await fetch(`${API_URL}${endpoint}`, {
@@ -27,28 +26,21 @@ const postData = async (obj, endpoint) => {
             },
             body: JSON.stringify(obj),
         });
-        const respuesta = await response.json()
-        if (!response.ok) {
-            // Swal.fire({
-            //     icon: 'error',
-            //     title: "Error en la petición",
-            //     text: respuesta.error,
-            // })
-            console.log(respuesta.error)
 
+        const respuesta = await response.json();
+
+        if (!response.ok) {
+            // Aquí puedes lanzar un error si la respuesta no es ok
+            return { success: false, error: respuesta.error || 'Error desconocido' };
         } else {
-            console.log(respuesta.success)
-            // Swal.fire({
-            //     icon: 'success',
-            //     title: "Exito",
-            //     text: respuesta.success,
-            // })
+            return { success: true, data: respuesta };
         }
-        return respuesta
     } catch (error) {
-        console.log(error)
+        console.error("Error en postData:", error);
+        return { success: false, error: 'Error en la conexión' };
     }
 };
+
 
 // Método para actualizar datos
 const actualizaDatos = async (id, datos, endpoint) => {
