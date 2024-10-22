@@ -24,7 +24,7 @@ const Navbar = () => {
   }
 
   const AboutUs =()=> {
-    navigate('/About')
+    navigate('/AcercaNosotros')
   };
   return (
     <header className="header">
