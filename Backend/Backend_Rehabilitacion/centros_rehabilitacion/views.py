@@ -10,7 +10,7 @@ class CentroView(generics.ListCreateAPIView): #post-get
     queryset = Centro.objects.all()# queryset es una variable que envía la petición al a bd
     serializer_class = CentroSerializer # serializer_class es la variable que llama al serializador que se creó en el archivo serializers.py
     #permission_classes = [IsAdminUser] # Asi se privatizan las vistas
-
+   
 class CentroUpdateView(generics.UpdateAPIView): #
     queryset = Centro.objects.all()
     serializer_class = CentroSerializer

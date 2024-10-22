@@ -34,7 +34,7 @@ const ModalAggCentros = ({ mostrar, abrir, cerrar }) => {
     };
 
     const peticion = await postData(centro, 'centros/api/centros/');
-    console.log(peticion);
+    
       if (peticion.status === 201) {
       Swal.fire({
         icon: 'success',
@@ -53,15 +53,15 @@ const ModalAggCentros = ({ mostrar, abrir, cerrar }) => {
 
   return (
     <>
-      {/* Botón para abrir el modal */}
+      
       <Button style={{ display: 'block', marginTop: '20px' }} variant="primary" onClick={abrir}>
         Agregar centro
       </Button>
 
-      {/* Modal para agregar centro */}
-      <Modal show={mostrar} onHide={cerrar}>
+      
+      <Modal show={mostrar} onHide={cerrar} >
         <Modal.Header closeButton>
-          <Modal.Title>Agregar Centros</Modal.Title>
+          <Modal.Title  id="modal-title">Agregar Centros</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <div className="form-group">
@@ -128,3 +128,4 @@ const ModalAggCentros = ({ mostrar, abrir, cerrar }) => {
 };
 
 export default ModalAggCentros;
+
