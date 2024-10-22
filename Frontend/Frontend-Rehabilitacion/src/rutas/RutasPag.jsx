@@ -4,6 +4,7 @@ import Login from '../paginas/Login';
 import Registro from '../paginas/Registro';
 import Micuenta from '../paginas/Micuenta';
 import Admin from '../paginas/Admin';
+import AcercaNosotros from '../paginas/AcercaNosotros';
 
 
 const RutasPag = () => {
@@ -14,6 +15,7 @@ const RutasPag = () => {
             <Route path='/Registro' element={<Registro/>} /> 
             <Route path='/micuenta' element={<Micuenta/>} />
             <Route path='/admin' element={<Admin/>}/>
+            <Route path='/AcercaNosotros' element={<AcercaNosotros/>}/>
 
         </Routes>
     )

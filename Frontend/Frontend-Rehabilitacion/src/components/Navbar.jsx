@@ -2,17 +2,30 @@
 import React from 'react';
 import Button from './Button';
 import Contacto from '../components/Contacto';
-import { useState } from 'react';
+import { useState  } from 'react';
 import '../Style/navbar.css'
+import { useNavigate } from 'react-router-dom';
 
 
 
 
 const Navbar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
+  const navigate = useNavigate('');
+
+  const handleLoginClick = () => {
+    navigate('/inicio');
+  };
+
+  const handleRegisterClick =()=> {
+    navigate('/Registro');
+  }
+
+  const AboutUs =()=> {
+    navigate('/About')
+  };
   return (
     <header className="header">
       <nav className="navbar navbar-expand-lg navbar">
@@ -34,13 +47,19 @@ const Navbar = () => {
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav nav-links">
               <li className="nav-item">
-                <a className="nav-link" href="#">Acerca de Nosotros</a>
+                <a className="nav-link" onClick={AboutUs} style={{cursor: 'pointer'}}>
+                  Sobre Nosotros
+                </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">Registrate</a>
+                <a className="nav-link" onClick={handleRegisterClick}style={{ cursor: 'pointer' }}>
+                  Regístrate
+                  </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">Inicia sesión</a>
+              <a className="nav-link" onClick={handleLoginClick} style={{ cursor: 'pointer' }}>
+              Inicia sesión
+              </a>
               </li>
             </ul>
             <a href="#" className="btn">

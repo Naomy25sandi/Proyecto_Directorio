@@ -37,7 +37,7 @@
   
   .register-form input {
     width: 100%;
-    max-width: 400px; /* ancho  */
+    max-width: 600px; /* ancho  */
     padding: 10px;
     margin: 10px 0;
     border: 1px solid #ccc;

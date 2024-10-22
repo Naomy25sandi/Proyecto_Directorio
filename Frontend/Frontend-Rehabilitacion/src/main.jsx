@@ -7,6 +7,7 @@ import Login from './paginas/Login.jsx'
 import Micuenta from './paginas/Micuenta.jsx'
 import Registro from './paginas/Registro.jsx'
 import Admin from './paginas/Admin.jsx'
+import AcercaNosotros from './paginas/AcercaNosotros.jsx'
 
 
 const router = createBrowserRouter([
@@ -29,7 +30,11 @@ const router = createBrowserRouter([
   {
     path: "/admin",
     element: <Admin/>
-  }
+  },
+  {
+    path: "/AcercaNosotros",
+    element: <AcercaNosotros/>
+  },
 ]);
 
 createRoot(document.getElementById('root')).render(
