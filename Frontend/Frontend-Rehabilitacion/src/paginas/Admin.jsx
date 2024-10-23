@@ -15,13 +15,15 @@ const Admin = () => {
   const [centroModal, setCentroModal] = useState(null);
   const [recarga, setRecarga] = useState(false);
 
-  useEffect(() => {
-    const traerCentros = async () => {
-      const centro = await GetData('centros/api/centros/');
-      setCentros(centro);
-    };
+
+  const traerCentros = async()=>{
+    const centro = await GetData('centros/api/centros');
+    setCentros(centro);
+  };
+
+  useEffect(()=>{
     traerCentros();
-  }, [recarga]);
+  },[]);
 
   const recargaPag = () => {
     setRecarga(!recarga);
