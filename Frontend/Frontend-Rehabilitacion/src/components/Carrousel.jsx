@@ -23,7 +23,7 @@ function Carrousel() {
                     alt=""
                 />
                 <Carousel.Caption>
-                    <h5>Llama ahora</h5>
+                    <h5>Llamá ahora!</h5>
                     <p>Puedes empezar a cambiar tu vida con una llamada!</p>
                 </Carousel.Caption>
             </Carousel.Item>

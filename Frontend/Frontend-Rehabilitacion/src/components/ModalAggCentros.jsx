@@ -12,6 +12,18 @@ const ModalAggCentros = ({ mostrar, abrir, cerrar }) => {
   const [estadoCentro, setEstadoCentro] = useState(false);
   const [precioCentro, setPrecioCentro] = useState('');
   const [imagenCentro, setImagenCentro] = useState('');
+  // Funcion para la imagen
+  const handleImage = (e)=>{
+    const file = e.target.files[0];
+    const reader = new FileReader();
+
+    if(file){
+      reader.onload = (event)=>{
+        setImagenCentro(event.target.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
 
   // Función para subir un nuevo centro
   const subirCentro = async () => {
@@ -119,9 +131,11 @@ const ModalAggCentros = ({ mostrar, abrir, cerrar }) => {
             <br />
             <label>Imagen</label>
             <input
-              type="text"
+              type="file"
               className="form-control"
-              onChange={(e) => setImagenCentro(e.target.value)} // Asegurarse de obtener el archivo
+              accept="image/*"
+              onChange={(handleImage)}
+
             />
           </div>
         </Modal.Body>
