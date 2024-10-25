@@ -12,7 +12,7 @@ import AcercaNosotros from './paginas/AcercaNosotros.jsx'
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/*",
     element: <App />
   },
   {

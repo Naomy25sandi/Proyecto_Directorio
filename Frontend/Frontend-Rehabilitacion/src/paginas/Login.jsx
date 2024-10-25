@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import LoginForm from '../components/Loginform';
 import { postData } from '../Services/api';
 import Swal from 'sweetalert2';
@@ -10,6 +10,7 @@ const Login = () => {
     const [correo, setCorreo] = useState("");
     const [clave, setClave] = useState("");
     const [cargando, setCargando] = useState(false); // Estado para indicar si se está cargando
+    const [userName, setUserName] = useState("");
     const navigate = useNavigate();
 
     const validarEmail = (email) => {
@@ -56,6 +57,9 @@ const Login = () => {
                 });
                 console.log(respuesta.super);
                 console.log(respuesta.usuario);
+                const { id, username, super: isSuperUser } = respuesta.usuario || {};
+                console.log(id, username, isSuperUser);
+                setUserName(username || "usuario");
                 crearCookie("super",respuesta.super,1);
                 crearCookie("usuario", respuesta.usuario,1);
                 navigate('/');
@@ -75,6 +79,14 @@ const Login = () => {
             });
         }
     };
+
+    useEffect(() => {
+        if (userName) {
+            // Si hay un nombre de usuario, puedes hacer algo aquí (ej. mostrar en la siguiente página)
+            console.log(`Bienvenido ${userName}`);
+        }
+    }, [userName]);
+
 
     return (
         <div className="login-container">

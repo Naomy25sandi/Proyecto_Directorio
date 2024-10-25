@@ -26,11 +26,15 @@ const Navbar = () => {
   const AboutUs =()=> {
     navigate('/AcercaNosotros')
   };
+
+ const handleHomeClick =()=>{
+    navigate('/')
+ }
   return (
     <header className="header">
       <nav className="navbar navbar-expand-lg navbar">
         <div className="container-fluid">
-          <a className="navbar-brand logo" href="#">
+          <a className="navbar-brand logo" onClick={handleHomeClick}>
             <img src="src/assets/logo.png" alt="logo de la marca" />
           </a>
           <button

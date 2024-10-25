@@ -10,7 +10,7 @@ import AcercaNosotros from '../paginas/AcercaNosotros';
 const RutasPag = () => {
     return (
         <Routes>
-            <Route path='/' element={<Home />} /> //El path es la dirección en la que se abre la pág y el element es el componente que se renderiza
+            <Route path='/*' element={<Home />} /> //El path es la dirección en la que se abre la pág y el element es el componente que se renderiza
             <Route path='/inicio' element={<Login />} />
             <Route path='/Registro' element={<Registro/>} /> 
             <Route path='/micuenta' element={<Micuenta/>} />

@@ -12,7 +12,7 @@ const ModalAggCentros = ({ mostrar, abrir, cerrar }) => {
   const [estadoCentro, setEstadoCentro] = useState(false);
   const [precioCentro, setPrecioCentro] = useState('');
   const [imagenCentro, setImagenCentro] = useState('');
-  // Funcion para la imagen
+  // Función para manejar la carga de imágenes
   const handleImage = (e)=>{
     const file = e.target.files[0];
     const reader = new FileReader();
@@ -133,7 +133,7 @@ const ModalAggCentros = ({ mostrar, abrir, cerrar }) => {
             <input
               type="file"
               className="form-control"
-              accept="image/*"
+              accept="image/x-png,image/gif,image/jpeg"
               onChange={(handleImage)}
 
             />

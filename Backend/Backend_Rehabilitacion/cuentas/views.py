@@ -44,22 +44,35 @@ class RegistroView(APIView):
         return Response({'success': 'Usuario creado'}, status=status.HTTP_201_CREATED) # creamos nuevo usuario
 
 class LoginView(APIView):
-    def post(self,request):
+    def post(self, request):
         email = request.data.get('email')
         password = request.data.get('password')
 
-        usuario = User.objects.get(email=email) # obtenemos el usuario por el email
+        try:
+            usuario = User.objects.get(email=email)  # obtenemos el usuario por el email
+        except User.DoesNotExist:
+            return Response({'error': 'Credenciales inválidas'}, status=status.HTTP_400_BAD_REQUEST)
 
-        usuario = authenticate(request,username=usuario.username, password=password) # autenticamos al usuario
+        usuario = authenticate(request, username=usuario.username, password=password)  # autenticamos al usuario
 
-        if usuario is None: # si no existe el usuario
+        if usuario is None:  # si no existe el usuario
             return Response({'error': 'Credenciales inválidas'}, status=status.HTTP_400_BAD_REQUEST)
         else:
-            refresh = RefreshToken.for_user(usuario)
-             # creamos un token para el usuario
-            return Response({'success': f' Usuario valido es super usuario?','usuario':{usuario.id},'super':{usuario.is_superuser},'token_acceso':str(refresh.access_token),'token_refresco':str(refresh)}, status=status.HTTP_200_OK) # retornamos el token
+            refresh = RefreshToken.for_user(usuario)  # creamos un token para el usuario
+            return Response({
+                'success': 'Usuario válido',
+                'usuario': {
+                    'id': usuario.id,
+                    'username': usuario.username,  # Devuelve el nombre de usuario
+                    'super': usuario.is_superuser  # Indica si es superusuario
+                },
+                'token_acceso': str(refresh.access_token),
+                'token_refresco': str(refresh)
+            },status=status.HTTP_200_OK)
+            
+
     
-    #tengo dudas para crear estas validaciones? 
+   
 
 class RegistroAdminView(APIView):
     def post(self,request):# Peticion

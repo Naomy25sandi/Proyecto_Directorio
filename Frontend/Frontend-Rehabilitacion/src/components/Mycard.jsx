@@ -3,11 +3,11 @@ import Card from 'react-bootstrap/Card';
 import Button from './Button';
 import '../Style/mycard.css';
 
-const Mycard = ({ nombre, descripcion, img, btnEliminar, btnEditar, mostrarBotones }) => {
+const Mycard = ({ nombre, descripcion, imagen, btnEliminar, btnEditar, mostrarBotones }) => {
   return (
     <div>
       <Card style={{ width: '18rem' }}>
-        <Card.Img variant="top" src={img} />
+        <Card.Img variant="top" src={imagen} />
         <Card.Body>
           <Card.Title>{nombre}</Card.Title>
           <Card.Text>
