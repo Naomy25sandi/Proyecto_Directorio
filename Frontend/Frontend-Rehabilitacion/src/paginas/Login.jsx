@@ -48,20 +48,17 @@ const Login = () => {
         try {
             const respuesta = await postData(usuario, "inicio/");
             setCargando(false);
-            
             if (respuesta && respuesta.success) {
                 Swal.fire({
                     icon: 'success',
                     title: '¡Bienvenido!',
                     text: 'Has iniciado sesión correctamente.',
                 });
-                console.log(respuesta.super);
-                console.log(respuesta.usuario);
                 const { id, username, super: isSuperUser } = respuesta.usuario || {};
                 console.log(id, username, isSuperUser);
                 setUserName(username || "usuario");
-                crearCookie("super",respuesta.super,1);
-                crearCookie("usuario", respuesta.usuario,1);
+                crearCookie("super", respuesta.data.usuario.super, 1);
+                crearCookie("usuario", respuesta.data.usuario.username, 1);
                 navigate('/');
             } else {
                 Swal.fire({

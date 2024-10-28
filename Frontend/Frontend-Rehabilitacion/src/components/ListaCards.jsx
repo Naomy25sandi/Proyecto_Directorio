@@ -3,11 +3,15 @@ import { deleteProductos } from "../Services/api";
 import Mycard from "./Mycard";
 
 const ListaCards = ({ cards, mostrarBotones, btnEditarC }) => {
+
+
   const eliminarDato = async (id) => {
+    console.log('aaaa');
+    
     console.log(`Eliminando producto con ID:{id}`);
     try {
       await deleteProductos(id, 'centros/api/centrosDelete'); // Llama a la función de eliminación
-      
+
     } catch (error) {
       console.error('Error al eliminar el producto:', error); // Manejo de errores
     }
@@ -20,11 +24,10 @@ const ListaCards = ({ cards, mostrarBotones, btnEditarC }) => {
           key={card.id}
           nombre={card.nombre}
           descripcion={card.descripcion} // dirección, precio, teléfono
-          img={card.img}
-          btnElimina
-          r={() => eliminarDato(card.id)}
+          imagen={card.imagen}
+          btnEliminar={() => eliminarDato(card.id)}
           mostrarBotones={mostrarBotones}
-          btnEditar={() => btnEditarC(card)} 
+          btnEditar={() => btnEditarC(card)}
         />
       ))}
     </div>

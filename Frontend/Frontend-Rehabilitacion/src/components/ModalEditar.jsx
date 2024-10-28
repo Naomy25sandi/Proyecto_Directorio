@@ -1,20 +1,35 @@
 import { useState, useEffect } from "react";
-import Swal from "sweetalert2"; 
+import Swal from "sweetalert2";
 import { actualizaDatos } from "../Services/api";
 
 const ModalEditarCentro = ({ abrirModal, cerrarModal }) => {
   const [nombreCentro, setNombreCentro] = useState('');
-  const [direccionCentro, setDireccionCentro] = useState('');
+  const [provinciaCentro, setProvinciaCentro] = useState('')
+  const [distritoCentro, setDistritoCentro] = useState('')
   const [telefonoCentro, setTelefonoCentro] = useState('');
   const [descripcionCentro, setDescripcionCentro] = useState('');
   const [estadoCentro, setEstadoCentro] = useState(false);
   const [precioCentro, setPrecioCentro] = useState('');
   const [imagenCentro, setImagenCentro] = useState('');
+  
+    // Función para manejar la carga de imágenes
+    const handleImage = (e) => {
+      const file = e.target.files[0];
+      const reader = new FileReader();
+  
+      if (file) {
+        reader.onload = (event) => {
+          setImagenCentro(event.target.result);
+        };
+        reader.readAsDataURL(file);
+      }
+    };
 
   useEffect(() => {
     if (abrirModal) {
       setNombreCentro(abrirModal.nombre || '');
-      setDireccionCentro(abrirModal.direccion || '');
+      setProvinciaCentro(abrirModal.provincia || '');
+      setDistritoCentro(abrirModal.distrito || '')
       setTelefonoCentro(abrirModal.telefono || '');
       setDescripcionCentro(abrirModal.descripcion || '');
       setEstadoCentro(abrirModal.estado || '');
@@ -24,7 +39,7 @@ const ModalEditarCentro = ({ abrirModal, cerrarModal }) => {
   }, [abrirModal]);
 
   const editarCentro = async () => {
-    if (nombreCentro === '' || direccionCentro === '' || telefonoCentro === '' || descripcionCentro === '' || precioCentro === '' || imagenCentro === '') {
+    if (nombreCentro === '' || provinciaCentro === '' || distritoCentro === '' || telefonoCentro === '' || descripcionCentro === '' || precioCentro === '' || imagenCentro === '') {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
@@ -34,7 +49,8 @@ const ModalEditarCentro = ({ abrirModal, cerrarModal }) => {
       const centroEditado = {
         id: abrirModal.id,
         nombre: nombreCentro,
-        direccion: direccionCentro,
+        provincia: provinciaCentro,
+        distrito: distritoCentro,
         telefono: telefonoCentro,
         descripcion: descripcionCentro,
         estado: estadoCentro,
@@ -68,11 +84,29 @@ const ModalEditarCentro = ({ abrirModal, cerrarModal }) => {
               </div>
 
               <div className="mb-3">
-                <label>Dirección</label>
+                <label>Provincia</label>
+                <select
+                  value={provinciaCentro}
+                  onChange={(e) => setProvinciaCentro(e.target.value)}
+                  className="form-control"
+                >
+              <option selected value={"Provincia"} disabled>Provincia</option>
+              <option value={'Alajuela'}>Alajuela</option>
+              <option value={'Cartago'}>Cartago</option>
+              <option value={'Guanacaste'}>Guanacaste</option>
+              <option value={'Heredia'}>Heredia</option>
+              <option value={'Limon'}>Limón</option>
+              <option value={'San Jose'}>San José</option>
+              <option value={'Puntarenas'}>Puntarenas</option>
+                </select>
+              </div>
+
+              <div className="mb-3">
+                <label>Distrito</label>
                 <input
                   type="text"
-                  value={direccionCentro}
-                  onChange={(e) => setDireccionCentro(e.target.value)}
+                  value={distritoCentro}
+                  onChange={(e) => setDistritoCentro(e.target.value)}
                   className="form-control"
                 />
               </div>
@@ -119,11 +153,12 @@ const ModalEditarCentro = ({ abrirModal, cerrarModal }) => {
               <div className="mb-3">
                 <label>Imagen</label>
                 <input
-                  type="text"
-                  value={imagenCentro}
-                  onChange={(e) => setImagenCentro(e.target.value)}
-                  className="form-control"
-                />
+              type="file"
+              className="form-control"
+              accept="image/x-png,image/gif,image/jpeg"
+              onChange={(handleImage)}
+
+            />
               </div>
             </form>
           </div>

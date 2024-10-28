@@ -6,19 +6,20 @@ import { postData } from '../Services/api';
 
 const ModalAggCentros = ({ mostrar, abrir, cerrar }) => {
   const [nombreCentro, setNombreCentro] = useState('');
-  const [direccionCentro, setDireccionCentro] = useState('');
+  const [provinciaCentro, setProvinciaCentro] = useState('')
+  const [distritoCentro, setDistritoCentro] = useState('')
   const [telefonoCentro, setTelefonoCentro] = useState('');
   const [descripcionCentro, setDescripcionCentro] = useState('');
   const [estadoCentro, setEstadoCentro] = useState(false);
   const [precioCentro, setPrecioCentro] = useState('');
   const [imagenCentro, setImagenCentro] = useState('');
   // Función para manejar la carga de imágenes
-  const handleImage = (e)=>{
+  const handleImage = (e) => {
     const file = e.target.files[0];
     const reader = new FileReader();
 
-    if(file){
-      reader.onload = (event)=>{
+    if (file) {
+      reader.onload = (event) => {
         setImagenCentro(event.target.result);
       };
       reader.readAsDataURL(file);
@@ -27,7 +28,7 @@ const ModalAggCentros = ({ mostrar, abrir, cerrar }) => {
 
   // Función para subir un nuevo centro
   const subirCentro = async () => {
-    if (!nombreCentro || !direccionCentro || !telefonoCentro || !descripcionCentro || !precioCentro) {
+    if (!nombreCentro || !provinciaCentro || !distritoCentro || !telefonoCentro || !descripcionCentro || !precioCentro) {
       Swal.fire({
         icon: 'error',
         title: 'Error',
@@ -43,24 +44,26 @@ const ModalAggCentros = ({ mostrar, abrir, cerrar }) => {
       estado: estadoCentro,
       precio: precioCentro,
       imagen: imagenCentro,
+      distrito: distritoCentro,
+      provincia: provinciaCentro
     };
 
     const peticion = await postData(centro, 'centros/api/centros/');
     console.log(peticion); //verificando la respuesta
-    
-    
-      if (peticion.success) { // error Keylor me ayudo habia un .status===201 
-        console.log("Centro agregado con éxito");
+
+
+    if (peticion.success) { // error Keylor me ayudo habia un .status===201 
+      console.log("Centro agregado con éxito");
 
       Swal.fire({
         icon: 'success',
         title: 'Agregado',
         text: 'Agregado con éxito',
       });
-      onCentroAgregado();
       cerrar(); // Cerrar modal al agregar con éxito
       setNombreCentro('');
-      setDireccionCentro('');
+      setProvinciaCentro('');
+      setDistritoCentro('')
       setTelefonoCentro('');
       setDescripcionCentro('');
       setPrecioCentro('');
@@ -76,15 +79,15 @@ const ModalAggCentros = ({ mostrar, abrir, cerrar }) => {
 
   return (
     <>
-      
+
       <Button style={{ display: 'block', marginTop: '20px' }} variant="primary" onClick={abrir}>
         Agregar centro
       </Button>
 
-      
-      <Modal  show={mostrar} onHide={cerrar} >
+
+      <Modal show={mostrar} onHide={cerrar} >
         <Modal.Header closeButton>
-          <Modal.Title  id="modal-title">Agregar Centros</Modal.Title>
+          <Modal.Title id="modal-title">Agregar Centros</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <div className="form-group">
@@ -95,12 +98,27 @@ const ModalAggCentros = ({ mostrar, abrir, cerrar }) => {
               placeholder="Nombre del centro"
               onChange={(e) => setNombreCentro(e.target.value)}
             />
-            <label>Dirección</label>
+            <label>Provincia</label>
+            <select
+              className="form-control"
+              placeholder="Provincia"
+              onChange={(e) => setProvinciaCentro(e.target.value)}
+            >
+              <option selected value={"Provincia"} disabled>Provincia</option>
+              <option value={'Alajuela'}>Alajuela</option>
+              <option value={'Cartago'}>Cartago</option>
+              <option value={'Guanacaste'}>Guanacaste</option>
+              <option value={'Heredia'}>Heredia</option>
+              <option value={'Limon'}>Limon</option>
+              <option value={'San Jose'}>San Jose</option>
+              <option value={'Puntarenas'}>Puntarenas</option>
+            </select>
+            <label>Distrito</label>
             <input
               type="text"
               className="form-control"
-              placeholder="Dirección"
-              onChange={(e) => setDireccionCentro(e.target.value)}
+              placeholder="Distrito"
+              onChange={(e) => setDistritoCentro(e.target.value)}
             />
             <label>Telefono</label>
             <input
