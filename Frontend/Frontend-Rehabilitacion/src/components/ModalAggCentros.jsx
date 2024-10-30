@@ -1,6 +1,6 @@
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import { postData } from '../Services/api';
 
@@ -12,7 +12,10 @@ const ModalAggCentros = ({ mostrar, abrir, cerrar }) => {
   const [descripcionCentro, setDescripcionCentro] = useState('');
   const [estadoCentro, setEstadoCentro] = useState(false);
   const [precioCentro, setPrecioCentro] = useState('');
+  const [tratamientos, setTratamientos] = useState([]);
+  const [tratamientoInput, setTratamientoInput] = useState('');
   const [imagenCentro, setImagenCentro] = useState('');
+  let tratamientosLista = []
   // Función para manejar la carga de imágenes
   const handleImage = (e) => {
     const file = e.target.files[0];
@@ -38,6 +41,7 @@ const ModalAggCentros = ({ mostrar, abrir, cerrar }) => {
     }
 
     const centro = {
+      id: centro.id,
       nombre: nombreCentro,
       descripcion: descripcionCentro,
       telefono: telefonoCentro,
@@ -47,6 +51,8 @@ const ModalAggCentros = ({ mostrar, abrir, cerrar }) => {
       distrito: distritoCentro,
       provincia: provinciaCentro
     };
+
+
 
     const peticion = await postData(centro, 'centros/api/centros/');
     console.log(peticion); //verificando la respuesta
@@ -76,6 +82,13 @@ const ModalAggCentros = ({ mostrar, abrir, cerrar }) => {
       });
     }
   };
+
+  const aggTratamientos = () => {
+    setTratamientos([...tratamientos, tratamientoInput])
+    console.log(tratamientos);
+
+  }
+
 
   return (
     <>
@@ -146,6 +159,15 @@ const ModalAggCentros = ({ mostrar, abrir, cerrar }) => {
               type="checkbox"
               onChange={(e) => setEstadoCentro(e.target.checked)}
             />
+            <label>Tratamientos</label>
+            <input
+              type="text"
+              onChange={(e) => setTratamientoInput(e.target.value)}
+            />
+            <br />
+            <button onClick={() => aggTratamientos()}>Agregar Tratamiento</button>
+
+
             <br />
             <label>Imagen</label>
             <input

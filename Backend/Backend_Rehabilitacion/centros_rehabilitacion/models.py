@@ -14,10 +14,20 @@ class Centro(models.Model):
 
 # python manage.py startapp nombre_app
 
-# class Ubicacion(models.Model):
-#     distrito= models.CharField(max_length=100)
-#     provincia= models.CharField(max_length=100)
-#     codigo_postal= models.CharField(max_length=15)
-#     detalles= models.CharField(max_length=100)
+class Tratamientos(models.Model):
+    nombre=  models.CharField(max_length=100)
+    descripcion =  models.CharField(max_length=100)
+    
+# class Servicios(models.Model):
+#     nombre=  models.CharField(max_length=100)
+#     descripcion =  models.CharField(max_length=100)
+    
+class TratamientosPorCentro(models.Model):
+    centro = models.ForeignKey(Centro,on_delete=models.CASCADE)
+    tratamiento = models.ManyToManyField(Tratamientos)
+    
+# class CentroServicios(models.Model):
+#     centro = models.ForeignKey(Centro,on_delete=models.CASCADE)
+#     servicio = models.ForeignKey()
     
     

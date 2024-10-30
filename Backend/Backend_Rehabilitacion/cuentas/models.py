@@ -14,4 +14,3 @@ class Blacklist(models.Model):
     def __str__(self):
         return self.ip_address
     
-#la dirección IP se muestre
