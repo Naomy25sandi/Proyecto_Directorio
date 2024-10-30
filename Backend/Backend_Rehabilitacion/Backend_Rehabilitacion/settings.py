@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'cuentas',
     'centros_rehabilitacion',
+    'pacientes',
     'rest_framework',
     'rest_framework.authtoken',
     'rest_framework_simplejwt', #update y delete 
