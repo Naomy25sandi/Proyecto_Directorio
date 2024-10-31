@@ -2,9 +2,9 @@ import React from 'react'
 
 const Formpaciente = () => {
   return (
-    <div>
-      
-    </div>
+<>
+<input type="text" placeholder='Nombre'/>
+</>
   )
 }
 
