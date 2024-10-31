@@ -1,11 +1,18 @@
 import React from 'react'
+import Navbar from '../components/Navbar'
+import Footer from '../components/Footer'
+import Saludar from '../components/Saludar'
+import Button from '../components/Button'
 
 const Micuenta = () => {
-
+ 
   
   return (
     <div>
-      <h1>{user.username}</h1>
+      <Navbar/>
+      <Saludar/>
+      <Button titulo={"Cerrar Sesion"}/>
+      <Footer/>
     </div>
   )
 }

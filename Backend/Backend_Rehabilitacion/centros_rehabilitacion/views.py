@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework import generics
-from .models import Centro
-from .serializers import CentroSerializer
+from .models import Centro, Tratamientos
+from .serializers import CentroSerializer, TratamientoSerializer
 from rest_framework.permissions import IsAuthenticated,IsAdminUser
 
 
@@ -21,5 +21,8 @@ class CentroDeleteView(generics.DestroyAPIView):
     serializer_class = CentroSerializer
     lookup_field = "id"
 
+class TratamientosView(generics.ListCreateAPIView):
+    queryset = Tratamientos.objects.all()
+    serializer_class = TratamientoSerializer
 
 

@@ -16,7 +16,6 @@ class Centro(models.Model):
 
 class Tratamientos(models.Model):
     nombre=  models.CharField(max_length=100)
-    descripcion =  models.CharField(max_length=100)
     
 # class Servicios(models.Model):
 #     nombre=  models.CharField(max_length=100)

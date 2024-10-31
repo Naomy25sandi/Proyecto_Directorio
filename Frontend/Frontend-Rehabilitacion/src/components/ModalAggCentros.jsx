@@ -49,16 +49,20 @@ const ModalAggCentros = ({ mostrar, abrir, cerrar }) => {
       precio: precioCentro,
       imagen: imagenCentro,
       distrito: distritoCentro,
-      provincia: provinciaCentro
-    };
+      provincia: provinciaCentro,
+    }
 
 
 
-    const peticion = await postData(centro, 'centros/api/centros/');
-    console.log(peticion); //verificando la respuesta
+    const peticionCrearCentro = await postData(centro, 'centros/api/centros/');
+    console.log(peticionCrearCentro); //verificando la respuesta
 
+    const tratamiento = {
+      nombre: tratamientos
+    }
+    const peticionCrearTratamiento = await postData(tratamiento, 'centros/api/tratamientos/')
 
-    if (peticion.success) { // error Keylor me ayudo habia un .status===201 
+    if (peticionCrearCentro.success) { // error Keylor me ayudo habia un .status===201 
       console.log("Centro agregado con éxito");
 
       Swal.fire({
@@ -84,11 +88,11 @@ const ModalAggCentros = ({ mostrar, abrir, cerrar }) => {
   };
 
   const aggTratamientos = () => {
-    setTratamientos([...tratamientos, tratamientoInput])
-    console.log(tratamientos);
-
+    if (tratamientoInput) {
+      setTratamientos([...tratamientos, tratamientoInput])
+      console.log(tratamientos);
+    }
   }
-
 
   return (
     <>
