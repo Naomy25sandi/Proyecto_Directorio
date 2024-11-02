@@ -17,8 +17,8 @@ const Home = () => {
       const centro = await GetData('centros/api/centros/')
       setCentros(centro)
     }
-    traerCentros()
-  }, [])
+    traerCentros();
+  }, []);
 
   return (
     <>

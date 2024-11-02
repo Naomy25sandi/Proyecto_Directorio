@@ -1,6 +1,6 @@
 
 import React from 'react';
-import Button from './Button';
+import Button from '../components/Button';
 import Contacto from '../components/Contacto';
 import { useState  } from 'react';
 import '../Style/navbar.css'

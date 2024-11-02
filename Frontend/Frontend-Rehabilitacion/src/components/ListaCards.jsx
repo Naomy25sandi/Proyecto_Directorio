@@ -25,6 +25,7 @@ const ListaCards = ({ cards, mostrarBotones, btnEditarC }) => {
           nombre={card.nombre}
           descripcion={card.descripcion} // dirección, precio, teléfono
           imagen={card.imagen}
+          id= {card.id}
           btnEliminar={() => eliminarDato(card.id)}
           mostrarBotones={mostrarBotones}
           btnEditar={() => btnEditarC(card)}

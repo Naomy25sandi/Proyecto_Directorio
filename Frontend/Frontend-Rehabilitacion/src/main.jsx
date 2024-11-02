@@ -38,7 +38,7 @@ const router = createBrowserRouter([
   },
 
   {
-    path: "/centrosinfo",
+    path: "/centros/:id",
     element: <CentrosInfo/>
   }
 ]);

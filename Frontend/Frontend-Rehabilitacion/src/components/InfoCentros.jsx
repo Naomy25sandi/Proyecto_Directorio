@@ -1,18 +1,21 @@
-import React from 'react'
+import React from 'react';
 
-const InfoCentros = () => {
+const InfoCentros = ({ centro }) => {
   return (
-    <div>
-      <Navbar />
-      <h1>{centro.nombre}</h1>
-      <p>{centro.descripcion}</p>
-      <p>{centro.provincia}</p>
-      <p>{centro.distrito}</p>
-      
-      {/* Agrega más información según lo que tengas disponible */}
-      <Footer />
+    <div className="text-center my-5">
+      <h1 className="mb-4">{centro.nombre}</h1>
+      {centro.imagen && (
+        <img 
+          src={centro.imagen} 
+          alt={centro.nombre} 
+          className="img-fluid rounded mb-3" // Clases de Bootstrap para imagen
+        />
+      )}
+      <p className="lead">{centro.descripcion}</p>
+      <p className="mt-3"><strong>Provincia:</strong> {centro.provincia}</p>
+      <p><strong>Distrito:</strong> {centro.distrito}</p>
     </div>
-  )
-}
+  );
+};
 
-export default InfoCentros
+export default InfoCentros;

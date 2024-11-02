@@ -1,28 +1,25 @@
-import React from 'react'
-import { useLocation } from 'react-router-dom'
-import Navbar from '../components/Navbar'
-import Footer from '../components/Footer'
+import React from 'react';
+import { useLocation } from 'react-router-dom';
+
+import Footer from '../components/Footer';
+import InfoCentros from '../components/InfoCentros'; 
+import Navbar from '../components/Navbar';
 
 const CentrosInfo = () => {
-  const location = useLocation()
-  const { centro } = location.state || {} // Maneja el caso de que no haya estado
+  const location = useLocation();
+  const { centro } = location.state || {}; // Maneja el caso de que no haya estado
 
   return (
-    <div>
-      <Navbar />
-      {centro ? (
-        <>
-          <h1>{centro.nombre}</h1>
-          <p>{centro.descripcion}</p>
-          <p>{centro.direccion}</p>
-          {/* Agrega más información según lo que tengas disponible */}
-        </>
+    <div className='container mt-5'>
+         <Navbar/>
+        {centro ? (
+        <InfoCentros centro={centro} /> // Usa el componente InfoCentros
       ) : (
         <p>No se encontró información del centro.</p>
       )}
       <Footer />
     </div>
-  )
-}
+  );
+};
 
-export default CentrosInfo
+export default CentrosInfo;

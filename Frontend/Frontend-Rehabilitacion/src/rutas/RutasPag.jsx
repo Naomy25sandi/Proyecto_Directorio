@@ -17,7 +17,7 @@ const RutasPag = () => {
             <Route path='/micuenta' element={<Micuenta/>} />
             <Route path='/admin' element={<Admin/>}/>
             <Route path='/AcercaNosotros' element={<AcercaNosotros/>}/>
-            <Route path='/centrosinfo' element={<CentrosInfo/>}/>
+            <Route path='/centros/:id' element={<CentrosInfo/>}/>
 
         </Routes>
     )
