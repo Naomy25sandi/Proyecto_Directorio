@@ -1,20 +1,25 @@
 import React from 'react'
 import Modales from './Modales'
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
 const Footer = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
+  const navigate = useNavigate();
+
+  const AboutUs =()=> {
+    navigate('/AcercaNosotros')
+  };
   return (
     <div className='container-fluid'>
 
         <div className="row p-5 bg-secondary text-white">
 
           <div className="col-xs-12 col-md-lg-6 col-lg-3">
-            <p className='h-3'>Sobre Nosotros</p>
+            <p className='h-3' onClick={AboutUs} style={{cursor: 'pointer'}}>Sobre Nosotros</p>
            
           </div>
 

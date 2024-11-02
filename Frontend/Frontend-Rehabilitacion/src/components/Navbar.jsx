@@ -3,7 +3,7 @@ import React from 'react';
 import Button from '../components/Button';
 import Contacto from '../components/Contacto';
 import { useState  } from 'react';
-import '../Style/navbar.css'
+import '../Style/navbar.css';
 import { useNavigate } from 'react-router-dom';
 
 

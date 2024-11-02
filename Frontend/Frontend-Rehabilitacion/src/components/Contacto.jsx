@@ -1,7 +1,7 @@
 import React from 'react'
 import Button from './Button';
 import { useState } from 'react';
-import '../Style/contacto.css'
+import '../Style/contacto.css';
 
 const Contacto = ({ isOpen, onClose }) => {
     if (!isOpen) return null;
