@@ -1,20 +1,23 @@
 import React from 'react';
 import { deleteProductos } from "../Services/api";
 import Mycard from "./Mycard";
+import Swal from 'sweetalert2';
 
 const ListaCards = ({ cards, mostrarBotones, btnEditarC }) => {
 
 
   const eliminarDato = async (id) => {
-    console.log('aaaa');
-    
-    console.log(`Eliminando producto con ID:{id}`);
-    try {
-      await deleteProductos(id, 'centros/api/centrosDelete'); // Llama a la función de eliminación
+    const resultado= await Swal.fire({
+      title: 'Estas seguro?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Eliminar',
+   });
 
-    } catch (error) {
-      console.error('Error al eliminar el producto:', error); // Manejo de errores
-    }
+   if (resultado.isConfirmed){
+    await deleteProductos(id, 'centros/api/centrosDelete');
+   }
+   
   };
 
   return (

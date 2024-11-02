@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Swal from "sweetalert2";
 import { actualizaDatos } from "../Services/api";
 
@@ -64,7 +64,7 @@ const ModalEditarCentro = ({ abrirModal, cerrarModal }) => {
   };
 
   return (
-    <div className="modal fade show" style={{ display: "block" }} tabIndex={-1}>
+    <div className={`modal fade ${abrirModal ? 'show' : ''}`} style={{ display: abrirModal ? 'block' : 'none' }} tabIndex={-1} aria-hidden={!abrirModal}>
       <div className="modal-dialog">
         <div className="modal-content">
           <div className="modal-header">

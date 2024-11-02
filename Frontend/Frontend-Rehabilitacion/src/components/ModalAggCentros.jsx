@@ -15,6 +15,7 @@ const ModalAggCentros = ({ mostrar, abrir, cerrar }) => {
   const [tratamientos, setTratamientos] = useState([]);
   const [tratamientoInput, setTratamientoInput] = useState('');
   const [imagenCentro, setImagenCentro] = useState('');
+  
   let tratamientosLista = []
   // Función para manejar la carga de imágenes
   const handleImage = (e) => {
@@ -41,7 +42,6 @@ const ModalAggCentros = ({ mostrar, abrir, cerrar }) => {
     }
 
     const centro = {
-      id: centro.id,
       nombre: nombreCentro,
       descripcion: descripcionCentro,
       telefono: telefonoCentro,
@@ -90,9 +90,9 @@ const ModalAggCentros = ({ mostrar, abrir, cerrar }) => {
   const aggTratamientos = () => {
     if (tratamientoInput) {
       setTratamientos([...tratamientos, tratamientoInput])
-      console.log(tratamientos);
+      setTratamientoInput('');
     }
-  }
+  };
 
   return (
     <>
