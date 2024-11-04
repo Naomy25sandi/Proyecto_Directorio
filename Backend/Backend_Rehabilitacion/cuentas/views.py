@@ -11,6 +11,9 @@ from rest_framework import viewsets
 from .models import Blacklist
 from .serializers import BlacklistSerializer
 
+#from rest_framework.permissions import IsAuthenticated
+#from rest_framework.decorators import api_view, permission_classes
+
 # Create your views here.
 # # View es la logica y se tienen que conectar con las URL
 class RegistroView(APIView):
@@ -97,7 +100,19 @@ class RegistroAdminView(APIView):
         nuevo_usuario = User.objects.create_superuser(username=username,email=email,password=password) # creamos un nuevo usuario   
         return Response({'success': 'Usuario creado'}, status=status.HTTP_201_CREATED) # creamos nuevo usuario
     
-    
+# class UserProfileView(APIView):
+#     permission_classes = [IsAuthenticated]
+
+#     def get(self, request):
+#         user = request.user
+#         data = {
+#             'nombre': user.get_full_name(),
+#             'email': user.email,
+            
+#         }
+#         return Response(data)
+   
+
 class BlacklistViewSet(viewsets.ModelViewSet):
     queryset = Blacklist.objects.all() #defino conjunto de datos
     serializer_class= BlacklistSerializer# convertimos datos 

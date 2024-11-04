@@ -3,11 +3,13 @@ const API_URL = "http://127.0.0.1:8000/"
 // Método para obtener datos
 const GetData = async (endpoint) => {
     try {
+        //const token = localStorage.getItem('token'); 
         let response = await fetch(`${API_URL}${endpoint}`, {
             method: "GET",
             mode: "cors",
             headers: {
                 "Content-type": "application/json",
+               // "Authorization": `Bearer ${token}`, //agregar token
             },
         });
         const datos = await response.json();
@@ -19,10 +21,12 @@ const GetData = async (endpoint) => {
 
 const postData = async (obj, endpoint) => {
     try {
+        //const token = localStorage.getItem('token'); 
         let response = await fetch(`${API_URL}${endpoint}`, {
             method: "POST",
             headers: {
                 "Content-type": "application/json",
+                //"Authorization": `Bearer ${token}`, //agregar token
             },
             body: JSON.stringify(obj),
         });
@@ -45,6 +49,7 @@ const postData = async (obj, endpoint) => {
 // Método para actualizar datos
 const actualizaDatos = async (id, datos, endpoint) => {
     try {
+        //const token = localStorage.getItem('token'); 
         const response = await fetch(`${API_URL}${endpoint}/${id}`, {
             method: 'PUT',
             headers: {

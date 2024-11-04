@@ -1,45 +1,53 @@
-import { useState, useEffect, useRef } from "react";
-import Swal from "sweetalert2";
-import { actualizaDatos } from "../Services/api";
+import { useState, useEffect } from "react"; // Importa hooks de React.
+import Swal from "sweetalert2"; // Importa SweetAlert2 para las alertas.
+import { actualizaDatos } from "../Services/api"; // Importa la función para actualizar datos.
 
 const ModalEditarCentro = ({ abrirModal, cerrarModal }) => {
+  // Definimos estados para cada campo del formulario.
   const [nombreCentro, setNombreCentro] = useState('');
-  const [provinciaCentro, setProvinciaCentro] = useState('')
-  const [distritoCentro, setDistritoCentro] = useState('')
+  const [provinciaCentro, setProvinciaCentro] = useState('');
+  const [distritoCentro, setDistritoCentro] = useState('');
   const [telefonoCentro, setTelefonoCentro] = useState('');
   const [descripcionCentro, setDescripcionCentro] = useState('');
   const [estadoCentro, setEstadoCentro] = useState(false);
   const [precioCentro, setPrecioCentro] = useState('');
   const [imagenCentro, setImagenCentro] = useState('');
-  
-    // Función para manejar la carga de imágenes
-    const handleImage = (e) => {
-      const file = e.target.files[0];
-      const reader = new FileReader();
-  
-      if (file) {
-        reader.onload = (event) => {
-          setImagenCentro(event.target.result);
-        };
-        reader.readAsDataURL(file);
-      }
-    };
 
+  // Función para manejar la carga de imágenes.
+  const handleImage = (e) => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+
+    if (file) {
+      reader.onload = (event) => {
+        setImagenCentro(event.target.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  // Se ejecuta cuando se abre el modal.
   useEffect(() => {
     if (abrirModal) {
+      // Establece los valores iniciales de los campos del formulario con los datos del centro a editar.
       setNombreCentro(abrirModal.nombre || '');
       setProvinciaCentro(abrirModal.provincia || '');
-      setDistritoCentro(abrirModal.distrito || '')
+      setDistritoCentro(abrirModal.distrito || '');
       setTelefonoCentro(abrirModal.telefono || '');
       setDescripcionCentro(abrirModal.descripcion || '');
-      setEstadoCentro(abrirModal.estado || '');
+      setEstadoCentro(abrirModal.estado || false);
       setPrecioCentro(abrirModal.precio || '');
       setImagenCentro(abrirModal.imagen || '');
     }
   }, [abrirModal]);
 
+  // Función para editar el centro.
   const editarCentro = async () => {
-    if (nombreCentro === '' || provinciaCentro === '' || distritoCentro === '' || telefonoCentro === '' || descripcionCentro === '' || precioCentro === '' || imagenCentro === '') {
+    if (
+      nombreCentro === '' || provinciaCentro === '' || distritoCentro === '' ||
+      telefonoCentro === '' || descripcionCentro === '' || precioCentro === '' ||
+      imagenCentro === ''
+    ) {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
@@ -57,18 +65,27 @@ const ModalEditarCentro = ({ abrirModal, cerrarModal }) => {
         precio: precioCentro,
         imagen: imagenCentro,
       };
-      const peticion = await actualizaDatos(centroEditado.id, centroEditado, '/centros/api/centrosUpdate');
-      console.log(peticion);
 
-      if (peticion.succes) {
-        
+      // Envía la solicitud para actualizar el centro.
+      const peticion = await actualizaDatos(centroEditado.id, centroEditado, '/centros/api/centrosUpdate');
+
+      // Verifica si la petición fue exitosa.
+      if (peticion.success) {
+        Swal.fire({
+          icon: 'success',
+          title: 'Éxito',
+          text: 'Centro actualizado correctamente',
+        });
       } else {
-        
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'No se pudo actualizar el centro',
+        });
       }
 
-
-      cerrarModal();
-      window.location.reload(); 
+      cerrarModal(); // Cierra el modal.
+      window.location.reload(); // Recarga la página.
     }
   };
 
@@ -99,14 +116,14 @@ const ModalEditarCentro = ({ abrirModal, cerrarModal }) => {
                   onChange={(e) => setProvinciaCentro(e.target.value)}
                   className="form-control"
                 >
-              <option value={"Provincia"} disabled>Provincia</option>
-              <option value={'Alajuela'}>Alajuela</option>
-              <option value={'Cartago'}>Cartago</option>
-              <option value={'Guanacaste'}>Guanacaste</option>
-              <option value={'Heredia'}>Heredia</option>
-              <option value={'Limon'}>Limón</option>
-              <option value={'San Jose'}>San José</option>
-              <option value={'Puntarenas'}>Puntarenas</option>
+                  <option value={"Provincia"} disabled>Provincia</option>
+                  <option value={'Alajuela'}>Alajuela</option>
+                  <option value={'Cartago'}>Cartago</option>
+                  <option value={'Guanacaste'}>Guanacaste</option>
+                  <option value={'Heredia'}>Heredia</option>
+                  <option value={'Limon'}>Limón</option>
+                  <option value={'San Jose'}>San José</option>
+                  <option value={'Puntarenas'}>Puntarenas</option>
                 </select>
               </div>
 
@@ -162,12 +179,11 @@ const ModalEditarCentro = ({ abrirModal, cerrarModal }) => {
               <div className="mb-3">
                 <label>Imagen</label>
                 <input
-              type="file"
-              className="form-control"
-              accept="image/x-png,image/gif,image/jpeg"
-              onChange={(handleImage)}
-
-            />
+                  type="file"
+                  className="form-control"
+                  accept="image/x-png,image/gif,image/jpeg"
+                  onChange={handleImage}
+                />
               </div>
             </form>
           </div>
@@ -185,4 +201,4 @@ const ModalEditarCentro = ({ abrirModal, cerrarModal }) => {
   );
 };
 
-export default ModalEditarCentro;
+export default ModalEditarCentro; // Exporta el componente.

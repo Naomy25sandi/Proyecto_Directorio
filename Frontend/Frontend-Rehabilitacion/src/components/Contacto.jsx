@@ -3,18 +3,21 @@ import Button from './Button';
 import { useState } from 'react';
 import '../Style/contacto.css';
 
+//componente Contacto, que recibe dos props: isOpen y onClose
 const Contacto = ({ isOpen, onClose }) => {
     if (!isOpen) return null;
-
+   // Si isOpen es falso, no muestra nada
+    
+   // estados para el nombre, correo y mensaje
     const [nombre, setNombre]= useState('');
     const [ correo, setCorreo]= useState('');
     const  [mensaje, setMensaje]= useState('');
 
     
   return (
- <div className="modal-overlay">
- <   div className="modal-content">
-     <p className='h-5'>Contáctenos</p>
+ <div className="modal-overlay">{/* Crea un fondo oscuro para el modal */}
+ <   div className="modal-content">{/* Contenedor del contenido del modal */}
+     <p className='h-5'>Contáctenos</p>{/* Título del modal */}
      <div className='input_container'>
      <input className='input' type="text"  placeholder= 'Nombre'value={nombre} onChange={(e)=>setNombre(e.target.value)}/>
      <input className='input' type="text" placeholder='Su correo' value={correo} onChange={(e)=>setCorreo(e.target.value)}/>

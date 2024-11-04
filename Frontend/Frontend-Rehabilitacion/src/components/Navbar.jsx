@@ -98,7 +98,7 @@ const Navbar = () => {
             <a className="btn" onClick={openModal}>
               <Button className="btn btn-primary" titulo='Contáctenos' evento={openModal} />
 
-            </a>
+              </a>
               <Contacto isOpen={isModalOpen} onClose={closeModal} />
             
           </div>

@@ -1,9 +1,11 @@
 import React from 'react';
 
+// Define el componente InfoCentros, que recibe una propiedad 'centro'
 const InfoCentros = ({ centro }) => {
   return (
     <div className="text-center my-5">
       <h1 className="mb-4">{centro.nombre}</h1>
+      {/* Verifica si hay una imagen antes de renderizarla */}
       {centro.imagen && (
         <img 
           src={centro.imagen} 

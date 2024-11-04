@@ -17,7 +17,7 @@ const Micuenta = () => {
       <br />
       <ModalAggPaciente/>
       <Button titulo = {"Editar información"}/>
-      <Button titulo={"Cerrar Sesion"}/>
+      
       <Footer/>
     </div>
   )

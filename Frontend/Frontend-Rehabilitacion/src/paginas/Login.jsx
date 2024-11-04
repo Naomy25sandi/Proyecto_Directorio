@@ -65,6 +65,7 @@ const Login = () => {
                 const { id, username, super: isSuperUser } = respuesta.data.usuario || {};
                 console.log(id, username, isSuperUser);
                 setUserName(username || "usuario");
+                //setToken(data.token_acceso);
                 setIsLoggedIn(true);
                 setIsSuperUser(isSuperUser);
                 crearCookie("super", isSuperUser, 1);

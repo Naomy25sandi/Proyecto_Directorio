@@ -7,6 +7,7 @@ urlpatterns = [
     path('api/centrosUpdate/<int:id>',CentroUpdateView.as_view(),name='centros_list_update'),
     path('api/centrosDelete/<int:id>',CentroDeleteView.as_view(),name='centros_list_delete'),
     path('api/tratamientos/',TratamientosView.as_view(),name='tratamientos_list'),
+    
 
 
 ]

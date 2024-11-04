@@ -4,35 +4,35 @@ import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import { postData } from '../Services/api';
 
-const ModalAggCentros = ({ mostrar, abrir, cerrar}) => {
-  const [nombreCentro, setNombreCentro] = useState('');
-  const [provinciaCentro, setProvinciaCentro] = useState('')
-  const [distritoCentro, setDistritoCentro] = useState('')
-  const [telefonoCentro, setTelefonoCentro] = useState('');
-  const [descripcionCentro, setDescripcionCentro] = useState('');
-  const [estadoCentro, setEstadoCentro] = useState(false);
-  const [precioCentro, setPrecioCentro] = useState('');
-  const [tratamientos, setTratamientos] = useState([]);
-  const [tratamientoInput, setTratamientoInput] = useState('');
-  const [imagenCentro, setImagenCentro] = useState('');
-  const [recarga, setRecarga] = useState(false);
+const ModalAggCentros = ({ mostrar, abrir, cerrar}) => {// Componente para agregar un nuevo centro
+  const [nombreCentro, setNombreCentro] = useState(''); // Estado para guardar el nombre del centro
+  const [provinciaCentro, setProvinciaCentro] = useState('')// Estado para la provincia.
+  const [distritoCentro, setDistritoCentro] = useState('')// Estado para el distrito.
+  const [telefonoCentro, setTelefonoCentro] = useState('');// Estado para el telefono
+  const [descripcionCentro, setDescripcionCentro] = useState('');// Estado para la descripción
+  const [estadoCentro, setEstadoCentro] = useState(false);// Estado para saber si el centro está activo o no.
+  const [precioCentro, setPrecioCentro] = useState('');// Estado para el precio
+  const [tratamientos, setTratamientos] = useState([]);// Estado para la lista de tratamientos
+  const [tratamientoInput, setTratamientoInput] = useState('');// Estado para el input del tratamiento
+  const [imagenCentro, setImagenCentro] = useState('');// Estado para la imagen del centro.
+  const [recarga, setRecarga] = useState(false);// Estado para controlar la recarga de la página.
   
   let tratamientosLista = []
   
   // Función para manejar la carga de imágenes
   const handleImage = (e) => {
-    const file = e.target.files[0];
-    const reader = new FileReader();
+    const file = e.target.files[0];// Toma el primer archivo del input
+    const reader = new FileReader();// Crea un nuevo lector de archivos.
 
-    if (file) {
+    if (file) { // Si hay un archivo seleccionado
       reader.onload = (event) => {
-        setImagenCentro(event.target.result);
+        setImagenCentro(event.target.result);// Guarda el resultado (la imagen) en el estado
       };
-      reader.readAsDataURL(file);
+      reader.readAsDataURL(file);// Lee el archivo como una URL de datos.
     }
   };
 
-  const recargaPag = () => {
+  const recargaPag = () => {// Función para recargar la página
     setRecarga(!recarga)
   }
 
@@ -46,7 +46,7 @@ const ModalAggCentros = ({ mostrar, abrir, cerrar}) => {
       });
       return;
     }
-
+   // Crea un objeto centro con la información ingresada.
     const centro = {
       nombre: nombreCentro,
       descripcion: descripcionCentro,
@@ -59,16 +59,17 @@ const ModalAggCentros = ({ mostrar, abrir, cerrar}) => {
     }
 
 
-
+   // Envía la solicitud para crear el centro.
     const peticionCrearCentro = await postData(centro, 'centros/api/centros/');
-    console.log(peticionCrearCentro);
-    window.location.reload(); //verificando la respuesta
-
+    window.location.reload();
+    
+    // Crea un objeto tratamiento con la lista de tratamientos.
     const tratamiento = {
       nombre: tratamientos
     }
     const peticionCrearTratamiento = await postData(tratamiento, 'centros/api/tratamientos/')
-
+    
+    // Verifica si la creación del centro fue exitosa.
     if (peticionCrearCentro.success) { // error Keylor me ayudo habia un .status===201 
       console.log("Centro agregado con éxito");
 
@@ -77,7 +78,7 @@ const ModalAggCentros = ({ mostrar, abrir, cerrar}) => {
         title: 'Agregado',
         text: 'Agregado con éxito',
       });
-      recargaPag();
+      recargaPag(); // Llama a la función para recargar.
       cerrar();  // Cerrar modal al agregar con éxito
       setNombreCentro('');
       setProvinciaCentro('');
@@ -86,7 +87,7 @@ const ModalAggCentros = ({ mostrar, abrir, cerrar}) => {
       setDescripcionCentro('');
       setPrecioCentro('');
       setImagenCentro('');
-      await traerCentros(); 
+      await traerCentros(); // Llama a la función para traer los centros actualizado
       
     } else {
       Swal.fire({
@@ -97,7 +98,7 @@ const ModalAggCentros = ({ mostrar, abrir, cerrar}) => {
     }
   };
 
-  const aggTratamientos = () => {
+  const aggTratamientos = () => {// Función para agregar tratamientos a la lista
     if (tratamientoInput) {
       setTratamientos([...tratamientos, tratamientoInput])
       setTratamientoInput('');
