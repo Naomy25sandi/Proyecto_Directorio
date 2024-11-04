@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import { postData } from '../Services/api';
 
-const ModalAggCentros = ({ mostrar, abrir, cerrar }) => {
+const ModalAggCentros = ({ mostrar, abrir, cerrar}) => {
   const [nombreCentro, setNombreCentro] = useState('');
   const [provinciaCentro, setProvinciaCentro] = useState('')
   const [distritoCentro, setDistritoCentro] = useState('')
@@ -15,8 +15,10 @@ const ModalAggCentros = ({ mostrar, abrir, cerrar }) => {
   const [tratamientos, setTratamientos] = useState([]);
   const [tratamientoInput, setTratamientoInput] = useState('');
   const [imagenCentro, setImagenCentro] = useState('');
+  const [recarga, setRecarga] = useState(false);
   
   let tratamientosLista = []
+  
   // Función para manejar la carga de imágenes
   const handleImage = (e) => {
     const file = e.target.files[0];
@@ -29,6 +31,10 @@ const ModalAggCentros = ({ mostrar, abrir, cerrar }) => {
       reader.readAsDataURL(file);
     }
   };
+
+  const recargaPag = () => {
+    setRecarga(!recarga)
+  }
 
   // Función para subir un nuevo centro
   const subirCentro = async () => {
@@ -55,7 +61,8 @@ const ModalAggCentros = ({ mostrar, abrir, cerrar }) => {
 
 
     const peticionCrearCentro = await postData(centro, 'centros/api/centros/');
-    console.log(peticionCrearCentro); //verificando la respuesta
+    console.log(peticionCrearCentro);
+    window.location.reload(); //verificando la respuesta
 
     const tratamiento = {
       nombre: tratamientos
@@ -70,7 +77,8 @@ const ModalAggCentros = ({ mostrar, abrir, cerrar }) => {
         title: 'Agregado',
         text: 'Agregado con éxito',
       });
-      cerrar(); // Cerrar modal al agregar con éxito
+      recargaPag();
+      cerrar();  // Cerrar modal al agregar con éxito
       setNombreCentro('');
       setProvinciaCentro('');
       setDistritoCentro('')
@@ -78,6 +86,8 @@ const ModalAggCentros = ({ mostrar, abrir, cerrar }) => {
       setDescripcionCentro('');
       setPrecioCentro('');
       setImagenCentro('');
+      await traerCentros(); 
+      
     } else {
       Swal.fire({
         icon: 'error',
@@ -121,7 +131,7 @@ const ModalAggCentros = ({ mostrar, abrir, cerrar }) => {
               placeholder="Provincia"
               onChange={(e) => setProvinciaCentro(e.target.value)}
             >
-              <option selected value={"Provincia"} disabled>Provincia</option>
+              <option  value={"Provincia"} disabled>Provincia</option>
               <option value={'Alajuela'}>Alajuela</option>
               <option value={'Cartago'}>Cartago</option>
               <option value={'Guanacaste'}>Guanacaste</option>

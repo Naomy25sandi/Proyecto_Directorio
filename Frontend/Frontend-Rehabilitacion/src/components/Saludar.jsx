@@ -1,7 +1,7 @@
 import React from 'react'
 
-const Saludar = ({username}) => {
-  return <h1>Bienvenido, {username}  !</h1>
+const Saludar = ({usuario}) => {
+  return <h1>Bienvenido, {usuario}  !</h1>
 }
 
 export default Saludar

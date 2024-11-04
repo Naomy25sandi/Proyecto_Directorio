@@ -1,16 +1,20 @@
-import { useState } from 'react'
-import './App.css'
-import RutasPag from './rutas/RutasPag'
+//import { useState } from 'react';
+
+import './App.css';
+import { AuthProvider } from './rutas/AuthProvider';
+import RutasPag from './rutas/RutasPag';
+// Asegúrate de que la ruta sea correcta
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <RutasPag/>
       
-    </>
-  )
+    <AuthProvider>
+      
+      <RutasPag />
+    
+    </AuthProvider>
+    
+  );
 }
 
-export default App
+export default App;

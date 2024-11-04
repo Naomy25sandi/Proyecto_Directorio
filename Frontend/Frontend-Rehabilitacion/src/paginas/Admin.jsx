@@ -13,7 +13,7 @@ const Admin = () => {
   const [modalPut, setModalPut] = useState(false);
   const [modal, setModal] = useState(false);
   const [centroModal, setCentroModal] = useState(null);
-  const [recarga, setRecarga] = useState(false);
+  
 
 
   const traerCentros = async () => {
@@ -25,9 +25,7 @@ const Admin = () => {
     traerCentros();
   }, []);
 
-  const recargaPag = () => {
-    setRecarga(!recarga);
-  };
+  
 
   const abrirModal = () => {
     setModal(true);
@@ -36,6 +34,7 @@ const Admin = () => {
   const editarCentro = (centro) => {
     setCentroModal(centro);
     setModalPut(true);
+    
   };
 
   const cerrarModal = () => {
@@ -47,7 +46,7 @@ const Admin = () => {
     <div>
       <Navbar />
       <div className="container mt-3">
-        <ModalAggCentros mostrar={modal} cerrar={cerrarModal} abrir={abrirModal} onCentroAgregado={recargaPag} />
+        <ModalAggCentros mostrar={modal} cerrar={cerrarModal} abrir={abrirModal} traerCentros={traerCentros}/>
       </div>
       <ListaCards cards={centros} mostrarBotones={esAdmin} btnEditarC={editarCentro} />
       {modalPut && <ModalEditarCentro abrirModal={centroModal} cerrarModal={cerrarModal} />}

@@ -6,20 +6,22 @@ import Micuenta from '../paginas/Micuenta';
 import Admin from '../paginas/Admin';
 import AcercaNosotros from '../paginas/AcercaNosotros';
 import CentrosInfo from '../paginas/CentrosInfo';
-//El path es la dirección en la que se abre la pág y el element es el componente que se renderiza
+import { AuthProvider } from '../rutas/AuthProvider';
 
 const RutasPag = () => {
     return (
-        <Routes>
-            <Route path='/' element={<Home />} /> 
-            <Route path='/inicio' element={<Login />} />
-            <Route path='/Registro' element={<Registro/>} /> 
-            <Route path='/micuenta' element={<Micuenta/>} />
-            <Route path='/admin' element={<Admin/>}/>
-            <Route path='/AcercaNosotros' element={<AcercaNosotros/>}/>
-            <Route path='/centros/:id' element={<CentrosInfo/>}/>
+        <AuthProvider>
+            <Routes>
+                <Route path='/' element={<Home />} />
+                <Route path='/inicio' element={<Login />} />
+                <Route path='/Registro' element={<Registro />} />
+                <Route path='/micuenta' element={<Micuenta />} />
+                <Route path='/admin' element={<Admin />} />
+                <Route path='/AcercaNosotros' element={<AcercaNosotros />} />
+                <Route path='/centros/:id' element={<CentrosInfo />} />
+            </Routes>
+        </AuthProvider>
+    );
+};
 
-        </Routes>
-    )
-}
 export default RutasPag;

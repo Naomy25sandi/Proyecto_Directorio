@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { AuthContext } from '../rutas/AuthProvider';//lo pase para aca a ver si era eso?
 import LoginForm from '../components/Loginform';
 import { postData } from '../Services/api';
 import Swal from 'sweetalert2';
@@ -8,14 +9,14 @@ import { useNavigate } from 'react-router-dom';
 import { crearCookie } from '../Services/cookies';
 
 
+
 const Login = () => {
     const [correo, setCorreo] = useState("");
     const [clave, setClave] = useState("");
     const [cargando, setCargando] = useState(false); // Estado para indicar si se está cargando
     const [userName, setUserName] = useState("");
-    
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const navigate = useNavigate();
+    const { isLoggedIn, setIsLoggedIn, setIsSuperUser } = useContext(AuthContext);
 
     const validarEmail = (email) => {
         const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -53,19 +54,27 @@ const Login = () => {
             const respuesta = await postData(usuario, "inicio/");
             
             setCargando(false);
+
             if (respuesta && respuesta.success) {
                 Swal.fire({
                     icon: 'success',
                     title: '¡Bienvenido!',
                     text: 'Has iniciado sesión correctamente.',
                 });
+
                 const { id, username, super: isSuperUser } = respuesta.data.usuario || {};
                 console.log(id, username, isSuperUser);
                 setUserName(username || "usuario");
                 setIsLoggedIn(true);
+                setIsSuperUser(isSuperUser);
                 crearCookie("super", isSuperUser, 1);
                 crearCookie("usuario", username, 1);
-                navigate('/');
+                if (isSuperUser) {
+                    navigate('/admin');
+                } else {
+                    navigate('/micuenta');  
+                }
+                
             } else {
                 Swal.fire({
                     icon: 'error',
@@ -74,12 +83,14 @@ const Login = () => {
                 });
             }
         } catch (error) {
+            console.log(error)
             setCargando(false);
             Swal.fire({
                 icon: 'error',
                 title: 'Error',
                 text: 'No se pudo iniciar sesión. Intenta de nuevo.',
             });
+            navigate('/');
         }
     };
 

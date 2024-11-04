@@ -1,35 +1,40 @@
-
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import Button from '../components/Button';
 import Contacto from '../components/Contacto';
-import { useState  } from 'react';
 import '../Style/navbar.css';
 import { useNavigate } from 'react-router-dom';
-
-
-
+import { AuthContext } from "../rutas/AuthProvider";// Importa el contexto
 
 const Navbar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { isLoggedIn, isSuperUser, setIsLoggedIn } = useContext(AuthContext); // Accede al contexto
+  const navigate = useNavigate();
+
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
-  const navigate = useNavigate('');
 
   const handleLoginClick = () => {
     navigate('/inicio');
   };
 
-  const handleRegisterClick =()=> {
+  const handleRegisterClick = () => {
     navigate('/Registro');
-  }
-
-  const AboutUs =()=> {
-    navigate('/AcercaNosotros')
   };
 
- const handleHomeClick =()=>{
-    navigate('/')
- }
+  const AboutUs = () => {
+    navigate('/AcercaNosotros');
+  };
+
+  const handleHomeClick = () => {
+    navigate('/');
+  };
+
+  const handleLogoutClick = () => {
+    setIsLoggedIn(false); // Cierra la sesión
+    // Aquí también puedes eliminar las cookies si es necesario
+    navigate('/'); // Redirige al home
+  };
+
   return (
     <header className="header">
       <nav className="navbar navbar-expand-lg navbar">
@@ -51,25 +56,51 @@ const Navbar = () => {
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav nav-links">
               <li className="nav-item">
-                <a className="nav-link" onClick={AboutUs} style={{cursor: 'pointer'}}>
+                <a className="nav-link" onClick={AboutUs} style={{ cursor: 'pointer' }}>
                   Sobre Nosotros
                 </a>
               </li>
-              <li className="nav-item">
-                <a className="nav-link" onClick={handleRegisterClick}style={{ cursor: 'pointer' }}>
-                  Regístrate
-                  </a>
-              </li>
-              <li className="nav-item">
-              <a className="nav-link" onClick={handleLoginClick} style={{ cursor: 'pointer' }}>
-              Inicia sesión
-              </a>
-              </li>
+              {isLoggedIn ? (
+                <>
+                  <li className="nav-item">
+                    <a className="nav-link" onClick={() => navigate('/micuenta')} style={{ cursor: 'pointer' }}>
+                      Mi Cuenta
+                    </a>
+                  </li>
+                  {isSuperUser && (
+                    <li className="nav-item">
+                      <a className="nav-link" onClick={() => navigate('/admin')} style={{ cursor: 'pointer' }}>
+                        Admin
+                      </a>
+                    </li>
+                  )}
+                  <li className="nav-item">
+                    <a className="nav-link" onClick={handleLogoutClick} style={{ cursor: 'pointer' }}>
+                      Cerrar Sesión
+                    </a>
+                  </li>
+                </>
+              ) : (
+                <>
+                  <li className="nav-item">
+                    <a className="nav-link" onClick={handleRegisterClick} style={{ cursor: 'pointer' }}>
+                      Regístrate
+                    </a>
+                  </li>
+                  <li className="nav-item">
+                    <a className="nav-link" onClick={handleLoginClick} style={{ cursor: 'pointer' }}>
+                      Inicia sesión
+                    </a>
+                  </li>
+                </>
+              )}
             </ul>
-            <a href="#" className="btn">
-              <Button className="btn btn-primary" titulo ='Contáctenos' evento={openModal}/>
-              <Contacto isOpen={isModalOpen} onClose={closeModal} />
+            <a className="btn" onClick={openModal}>
+              <Button className="btn btn-primary" titulo='Contáctenos' evento={openModal} />
+
             </a>
+              <Contacto isOpen={isModalOpen} onClose={closeModal} />
+            
           </div>
         </div>
       </nav>

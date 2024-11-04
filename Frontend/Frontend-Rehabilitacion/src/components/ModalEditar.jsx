@@ -59,7 +59,16 @@ const ModalEditarCentro = ({ abrirModal, cerrarModal }) => {
       };
       const peticion = await actualizaDatos(centroEditado.id, centroEditado, '/centros/api/centrosUpdate');
       console.log(peticion);
+
+      if (peticion.succes) {
+        
+      } else {
+        
+      }
+
+
       cerrarModal();
+      window.location.reload(); 
     }
   };
 
@@ -90,7 +99,7 @@ const ModalEditarCentro = ({ abrirModal, cerrarModal }) => {
                   onChange={(e) => setProvinciaCentro(e.target.value)}
                   className="form-control"
                 >
-              <option selected value={"Provincia"} disabled>Provincia</option>
+              <option value={"Provincia"} disabled>Provincia</option>
               <option value={'Alajuela'}>Alajuela</option>
               <option value={'Cartago'}>Cartago</option>
               <option value={'Guanacaste'}>Guanacaste</option>
