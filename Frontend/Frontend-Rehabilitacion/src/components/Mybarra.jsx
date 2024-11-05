@@ -1,23 +1,33 @@
 import React, { useState } from 'react';
-import { GetData } from '../Services/api';
+import { getBusqueda, GetData } from '../Services/api';
 
 const Mybarra = ({ onSearch }) => {
   const [query, setQuery] = useState('');
 
-  const handleSearch = (e) => {
+  const handleSearch = async(e) => {
     e.preventDefault();
-    onSearch(query); // Llama a la función pasada como prop
+
+    if(query.trim()){
+      try {
+        const centroE= await getBusqueda(query)
+        onSearch(centroE)
+      } catch (error) {
+        console.error('Error al buscar',error);
+        
+      }
+    }
+    
   };
 
   return (
-    <form onSubmit={handleSearch}>
-      <input 
+    <form className='d-flex' onSubmit={handleSearch}>
+      <input className="form-control me-2"
         type="text" 
-        placeholder="Buscar centros..." 
+        placeholder="Buscar centros" 
         value={query} 
         onChange={(e) => setQuery(e.target.value)} 
       />
-      <button type="submit">Buscar</button>
+      <button className="btn btn-primary" type="submit">Buscar</button>
     </form>
   );
 };

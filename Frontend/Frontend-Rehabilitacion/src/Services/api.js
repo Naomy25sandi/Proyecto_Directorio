@@ -9,7 +9,7 @@ const GetData = async (endpoint) => {
             mode: "cors",
             headers: {
                 "Content-type": "application/json",
-               // "Authorization": `Bearer ${token}`, //agregar token
+                // "Authorization": `Bearer ${token}`, //agregar token
             },
         });
         const datos = await response.json();
@@ -86,6 +86,16 @@ const deleteProductos = async (id, endpoint) => {
         console.log(error);
     }
 };
+const getBusqueda = async (busqueda) => {
+    try {
+        const peticion = await fetch(`http://127.0.0.1:8000/centros/api/buscar/centros/?q=${busqueda}`)
+        const data = await peticion.json()
+        console.log(data);
+        return data
+    } catch (error) {
+        console.error(error);
+    }
 
+}
 // Exportar todos los métodos
-export { GetData, postData, actualizaDatos, deleteProductos };
+export { GetData, postData, actualizaDatos, deleteProductos, getBusqueda };

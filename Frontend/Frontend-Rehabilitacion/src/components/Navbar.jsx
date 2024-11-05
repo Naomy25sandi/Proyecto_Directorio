@@ -31,7 +31,6 @@ const Navbar = () => {
 
   const handleLogoutClick = () => {
     setIsLoggedIn(false); // Cierra la sesión
-    // Aquí también puedes eliminar las cookies si es necesario
     navigate('/'); // Redirige al home
   };
 

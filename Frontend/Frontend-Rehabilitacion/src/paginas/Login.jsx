@@ -52,7 +52,7 @@ const Login = () => {
         setCargando(true);
         try {
             const respuesta = await postData(usuario, "inicio/");
-            
+
             setCargando(false);
 
             if (respuesta && respuesta.success) {
@@ -62,7 +62,7 @@ const Login = () => {
                     text: 'Has iniciado sesión correctamente.',
                 });
 
-                const { id, username, super: isSuperUser } = respuesta.data.usuario || {};
+                const { id, username, super: isSuperUser, correo, apellido } = respuesta.data.usuario || {};
                 console.log(id, username, isSuperUser);
                 setUserName(username || "usuario");
                 //setToken(data.token_acceso);
@@ -70,12 +70,14 @@ const Login = () => {
                 setIsSuperUser(isSuperUser);
                 crearCookie("super", isSuperUser, 1);
                 crearCookie("usuario", username, 1);
+                crearCookie("apellido", apellido, 1)
+                crearCookie("correo", correo, 1)
                 if (isSuperUser) {
                     navigate('/admin');
                 } else {
-                    navigate('/micuenta');  
+                    navigate('/micuenta');
                 }
-                
+
             } else {
                 Swal.fire({
                     icon: 'error',
@@ -97,7 +99,7 @@ const Login = () => {
 
     useEffect(() => {
         if (userName) {
-            
+
             console.log(`Bienvenido ${userName}`);
         }
     }, [userName]);
@@ -106,23 +108,23 @@ const Login = () => {
     return (
         <div className="login-container">
             {isLoggedIn ? (
-                <Saludar username={userName}/>
-            ): (
+                <Saludar username={userName} />
+            ) : (
 
                 <>
 
-            <div className="login-image">
-                <img src="src/assets/corazon.avif" alt="Inicio Sesión" />
-            </div>
-            <LoginForm
-                alEnviar={validaUsuario}
-                setCorreo={setCorreo}
-                setClave={setClave}
-                correo={correo}
-                clave={clave}
-                cargando={cargando}
-            />
-            </>
+                    <div className="login-image">
+                        <img src="src/assets/corazon.avif" alt="Inicio Sesión" />
+                    </div>
+                    <LoginForm
+                        alEnviar={validaUsuario}
+                        setCorreo={setCorreo}
+                        setClave={setClave}
+                        correo={correo}
+                        clave={clave}
+                        cargando={cargando}
+                    />
+                </>
             )}
         </div>
     );

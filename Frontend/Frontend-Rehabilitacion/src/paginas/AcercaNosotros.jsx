@@ -2,7 +2,7 @@ import React from 'react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import '../Style/acercanosotros.css';
-
+ // se crea la funcion 
 const AcercaNosotros = () => {
   return (
     <>
@@ -30,4 +30,4 @@ const AcercaNosotros = () => {
   )
 }
 
-export default AcercaNosotros
+export default AcercaNosotros// exporto el documento

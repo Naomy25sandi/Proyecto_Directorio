@@ -19,7 +19,7 @@ const ListaCards = ({ cards, mostrarBotones, btnEditarC }) => {
    if (resultado.isConfirmed){
     await deleteProductos(id, 'centros/api/centrosDelete');// Llama a la función para eliminar el producto
    }
-   window.location.reload();
+  //  window.location.reload();
   };
 
   return (

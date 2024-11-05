@@ -4,51 +4,59 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import ListaCards from '../components/ListaCards';
 import '../Style/Home.css';
-import { GetData } from '../Services/api';
+import { getBusqueda, GetData } from '../Services/api';
 import { traerCookie } from '../Services/cookies';
 import Carrousel from '../components/Carrousel';
 
 const Home = () => {
-  const [centros, setCentros] = useState([]);
-  const [filteredCentros, setFilteredCentros] = useState([]);
-  const esAdmin = traerCookie("super");
-
+  const [centros, setCentros] = useState([]);// Estado para almacenar la lista de centros
+  const [filteredCentros, setFilteredCentros] = useState([]);; // Estado para almacenar los centros filtrados según la búsqueda
+  const esAdmin = traerCookie("super");// Verificamos si el usuario es admin com la cookie
+  const [busqueda, setBusqueda] = useState('')
+  // useEffect que se ejecuta al montar el component
   useEffect(() => {
     const traerCentros = async () => {
-      try {
-        const centro = await GetData('centros/api/centros/');
-        setCentros(centro);
-        setFilteredCentros(centro); // Inicialmente mostrar todos los centros
-      } catch (error) {
-        console.error('Error al traer centros:', error);
-        
+      if (busqueda.length > 0) {
+        const buscarCentro = await getBusqueda(busqueda)
+        setCentros(buscarCentro)
+      } else {
+        const getCentros = await GetData('centros/api/centros/')
+        setCentros(getCentros)
       }
-    };
-    traerCentros();
-  }, []);
-
-  const handleSearch = (query) => {
-    if (!query) {
-      setFilteredCentros(centros); // Si no hay búsqueda, mostrar todos
-    } else {
-      const filtered = centros.filter(centro =>
-        centro.nombre.toLowerCase().includes(query.toLowerCase()) // Cambia "nombre" por la propiedad que desees filtrar
-      );
-      setFilteredCentros(filtered);
     }
-  };
+    traerCentros()
+    // Llamamos a la función para traer los centros
+  }, [busqueda]);// la dependecia la dejamos vacia para se ejecute una sola vez
+
+  // Función para manejar la búsqueda de centros
+  // const handleSearch = async (query) => {
+  //   try {
+  //     const filtradoCentros = await getBusqueda(query)
+  //     console.log(filteredCentros.length);
+  //     if (filtradoCentros.length > 0) {
+  //       console.log("entra");
+  //       setCentros(filtradoCentros)
+  //     } else {
+  //       const centro = await GetData('centros/api/centros/');// hacemos el llamado para obtener centros
+  //       setCentros(centro); // Actualizamos el estado con los centros
+  //       setFilteredCentros(centro); // Inicialmente mostrar todos los centros
+  //     }
+  //   } catch (error) {// Manejo de errores en la obtención de datos
+  //     console.error('Error al traer centros:', error);
+  //   }
+  // };
 
   return (
     <>
       <Navbar />
-      <Mybarra onSearch={handleSearch} />
+      <Mybarra onSearch={busqueda} />
       <Carrousel />
       <h1 className="text-center mt-5">Centros de Rehabilitación</h1>
       <div className='lista-centros'>
-        {filteredCentros.length === 0 ? (
+        {centros.length === 0 ? (
           <h1>No hay centros que coincidan con tu búsqueda</h1>
         ) : (
-          <ListaCards cards={filteredCentros} mostrarBotones={esAdmin} />
+          <ListaCards cards={centros} mostrarBotones={esAdmin} />
         )}
       </div>
       <Footer />

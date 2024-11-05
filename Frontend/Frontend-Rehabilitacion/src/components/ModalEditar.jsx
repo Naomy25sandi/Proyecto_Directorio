@@ -4,14 +4,14 @@ import { actualizaDatos } from "../Services/api"; // Importa la función para ac
 
 const ModalEditarCentro = ({ abrirModal, cerrarModal }) => {
   // Definimos estados para cada campo del formulario.
-  const [nombreCentro, setNombreCentro] = useState('');
-  const [provinciaCentro, setProvinciaCentro] = useState('');
-  const [distritoCentro, setDistritoCentro] = useState('');
-  const [telefonoCentro, setTelefonoCentro] = useState('');
-  const [descripcionCentro, setDescripcionCentro] = useState('');
-  const [estadoCentro, setEstadoCentro] = useState(false);
-  const [precioCentro, setPrecioCentro] = useState('');
-  const [imagenCentro, setImagenCentro] = useState('');
+  const [nombreCentro, setNombreCentro] = useState('');// estado para nombre
+  const [provinciaCentro, setProvinciaCentro] = useState('');// estado para provincia
+  const [distritoCentro, setDistritoCentro] = useState('');// estado distrito
+  const [telefonoCentro, setTelefonoCentro] = useState('');// estado telefono
+  const [descripcionCentro, setDescripcionCentro] = useState('');//estado descripcion
+  const [estadoCentro, setEstadoCentro] = useState(false);// estado para el estado del centro
+  const [precioCentro, setPrecioCentro] = useState(''); // estado para el precio
+  const [imagenCentro, setImagenCentro] = useState(''); // estado para la imagen
 
   // Función para manejar la carga de imágenes.
   const handleImage = (e) => {
@@ -39,7 +39,7 @@ const ModalEditarCentro = ({ abrirModal, cerrarModal }) => {
       setPrecioCentro(abrirModal.precio || '');
       setImagenCentro(abrirModal.imagen || '');
     }
-  }, [abrirModal]);
+  }, [abrirModal]); // sepasa abrir modal como dependencia
 
   // Función para editar el centro.
   const editarCentro = async () => {
@@ -54,6 +54,7 @@ const ModalEditarCentro = ({ abrirModal, cerrarModal }) => {
         text: 'Todos los campos son obligatorios',
       });
     } else {
+      // se crea un objeto para almacenar los nuevos valores a la hora de editar el centro
       const centroEditado = {
         id: abrirModal.id,
         nombre: nombreCentro,
@@ -70,7 +71,7 @@ const ModalEditarCentro = ({ abrirModal, cerrarModal }) => {
       const peticion = await actualizaDatos(centroEditado.id, centroEditado, '/centros/api/centrosUpdate');
 
       // Verifica si la petición fue exitosa.
-      if (peticion.success) {
+      if (peticion) {
         Swal.fire({
           icon: 'success',
           title: 'Éxito',
@@ -85,7 +86,7 @@ const ModalEditarCentro = ({ abrirModal, cerrarModal }) => {
       }
 
       cerrarModal(); // Cierra el modal.
-      window.location.reload(); // Recarga la página.
+      
     }
   };
 

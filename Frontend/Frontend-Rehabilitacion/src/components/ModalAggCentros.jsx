@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import { postData } from '../Services/api';
 
-const ModalAggCentros = ({ mostrar, abrir, cerrar}) => {// Componente para agregar un nuevo centro
+const ModalAggCentros = ({ mostrar, abrir, cerrar }) => {// Componente para agregar un nuevo centro
   const [nombreCentro, setNombreCentro] = useState(''); // Estado para guardar el nombre del centro
   const [provinciaCentro, setProvinciaCentro] = useState('')// Estado para la provincia.
   const [distritoCentro, setDistritoCentro] = useState('')// Estado para el distrito.
@@ -16,9 +16,9 @@ const ModalAggCentros = ({ mostrar, abrir, cerrar}) => {// Componente para agreg
   const [tratamientoInput, setTratamientoInput] = useState('');// Estado para el input del tratamiento
   const [imagenCentro, setImagenCentro] = useState('');// Estado para la imagen del centro.
   const [recarga, setRecarga] = useState(false);// Estado para controlar la recarga de la página.
-  
+
   let tratamientosLista = []
-  
+
   // Función para manejar la carga de imágenes
   const handleImage = (e) => {
     const file = e.target.files[0];// Toma el primer archivo del input
@@ -46,7 +46,7 @@ const ModalAggCentros = ({ mostrar, abrir, cerrar}) => {// Componente para agreg
       });
       return;
     }
-   // Crea un objeto centro con la información ingresada.
+    // Crea un objeto centro con la información ingresada.
     const centro = {
       nombre: nombreCentro,
       descripcion: descripcionCentro,
@@ -59,16 +59,16 @@ const ModalAggCentros = ({ mostrar, abrir, cerrar}) => {// Componente para agreg
     }
 
 
-   // Envía la solicitud para crear el centro.
+    // Envía la solicitud para crear el centro.
     const peticionCrearCentro = await postData(centro, 'centros/api/centros/');
-    window.location.reload();
-    
+    // window.location.reload();
+
     // Crea un objeto tratamiento con la lista de tratamientos.
     const tratamiento = {
       nombre: tratamientos
     }
     const peticionCrearTratamiento = await postData(tratamiento, 'centros/api/tratamientos/')
-    
+
     // Verifica si la creación del centro fue exitosa.
     if (peticionCrearCentro.success) { // error Keylor me ayudo habia un .status===201 
       console.log("Centro agregado con éxito");
@@ -88,7 +88,7 @@ const ModalAggCentros = ({ mostrar, abrir, cerrar}) => {// Componente para agreg
       setPrecioCentro('');
       setImagenCentro('');
       await traerCentros(); // Llama a la función para traer los centros actualizado
-      
+
     } else {
       Swal.fire({
         icon: 'error',
@@ -132,7 +132,7 @@ const ModalAggCentros = ({ mostrar, abrir, cerrar}) => {// Componente para agreg
               placeholder="Provincia"
               onChange={(e) => setProvinciaCentro(e.target.value)}
             >
-              <option  value={"Provincia"} disabled>Provincia</option>
+              <option value={"Provincia"} disabled>Provincia</option>
               <option value={'Alajuela'}>Alajuela</option>
               <option value={'Cartago'}>Cartago</option>
               <option value={'Guanacaste'}>Guanacaste</option>

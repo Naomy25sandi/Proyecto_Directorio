@@ -17,16 +17,12 @@ class Centro(models.Model):
 class Tratamientos(models.Model):
     nombre=  models.CharField(max_length=100)
     
-# class Servicios(models.Model):
-#     nombre=  models.CharField(max_length=100)
-#     descripcion =  models.CharField(max_length=100)
+
     
 class TratamientosPorCentro(models.Model):
     centro = models.ForeignKey(Centro,on_delete=models.CASCADE)
     tratamiento = models.ManyToManyField(Tratamientos)
     
-# class CentroServicios(models.Model):
-#     centro = models.ForeignKey(Centro,on_delete=models.CASCADE)
-#     servicio = models.ForeignKey()
+
     
     

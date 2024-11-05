@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  react:
+    container_name: react_app
+    build:
+      context: ./Frontend/Frontend-Rehabilitacion/ # contexto para la construcción de la imagen
+      
+    volumes:
+      - ./Frontend/Frontend-Rehabilitacion/:/app
+      - /app/node_modules
+    ports:
+      - "5173:5173"
+
+  django:
+    container_name: django_app
+    build:
+      context: ./Backend/Backend_Rehabilitacion/ # El contexto del proyecto Django
+      
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./Backend/Backend_Rehabilitacion/:/app
+    command: [ "./wait-for-it.sh", "-t", "30", "mysql:3306", "--", "python", "manage.py", "runserver", "0.0.0.0:8000" ]
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql:latest
+    ports:
+      - "3307:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=django-react
+    volumes:
+      - django_react_data:/var/lib/mysql
+
+volumes:
+  django_react_data:
