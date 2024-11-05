@@ -10,46 +10,31 @@ import Carrousel from '../components/Carrousel';
 
 const Home = () => {
   const [centros, setCentros] = useState([]);// Estado para almacenar la lista de centros
-  const [filteredCentros, setFilteredCentros] = useState([]);; // Estado para almacenar los centros filtrados según la búsqueda
+  //const [filteredCentros, setFilteredCentros] = useState([]);; // Estado para almacenar los centros filtrados según la búsqueda
   const esAdmin = traerCookie("super");// Verificamos si el usuario es admin com la cookie
   const [busqueda, setBusqueda] = useState('')
   // useEffect que se ejecuta al montar el component
   useEffect(() => {
     const traerCentros = async () => {
-      if (busqueda.length > 0) {
+      if (busqueda.trim()) {
         const buscarCentro = await getBusqueda(busqueda)
-        setCentros(buscarCentro)
+        setCentros(buscarCentro);
+        console.log('Centros encontrados:', buscarCentro);
       } else {
-        const getCentros = await GetData('centros/api/centros/')
+        const getCentros = await GetData('/centros/api/buscar/centros/')
         setCentros(getCentros)
       }
-    }
-    traerCentros()
+    };
+    traerCentros();
     // Llamamos a la función para traer los centros
   }, [busqueda]);// la dependecia la dejamos vacia para se ejecute una sola vez
 
-  // Función para manejar la búsqueda de centros
-  // const handleSearch = async (query) => {
-  //   try {
-  //     const filtradoCentros = await getBusqueda(query)
-  //     console.log(filteredCentros.length);
-  //     if (filtradoCentros.length > 0) {
-  //       console.log("entra");
-  //       setCentros(filtradoCentros)
-  //     } else {
-  //       const centro = await GetData('centros/api/centros/');// hacemos el llamado para obtener centros
-  //       setCentros(centro); // Actualizamos el estado con los centros
-  //       setFilteredCentros(centro); // Inicialmente mostrar todos los centros
-  //     }
-  //   } catch (error) {// Manejo de errores en la obtención de datos
-  //     console.error('Error al traer centros:', error);
-  //   }
-  // };
+ 
 
   return (
     <>
       <Navbar />
-      <Mybarra onSearch={busqueda} />
+      <Mybarra onSearch={setBusqueda}/>
       <Carrousel />
       <h1 className="text-center mt-5">Centros de Rehabilitación</h1>
       <div className='lista-centros'>

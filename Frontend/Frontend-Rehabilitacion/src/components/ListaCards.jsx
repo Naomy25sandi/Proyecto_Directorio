@@ -2,6 +2,7 @@ import React from 'react';
 import { deleteProductos } from "../Services/api";
 import Mycard from "./Mycard";
 import Swal from 'sweetalert2';
+import '../Style/mycard.css'
 
 // Define el componente ListaCards que recibe props: cards, mostrarBotones y btnEditarC
 const ListaCards = ({ cards, mostrarBotones, btnEditarC }) => {

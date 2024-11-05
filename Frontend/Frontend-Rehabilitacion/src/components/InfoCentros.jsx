@@ -14,8 +14,8 @@ const InfoCentros = ({ centro }) => {
         />
       )}
       <p className="lead">{centro.descripcion}</p>
-      <p className="mt-3"><strong>Provincia:</strong> {centro.provincia}</p>
-      <p><strong>Distrito:</strong> {centro.distrito}</p>
+      <p className="mt-3"><strong>Provincia:{centro.provincia}</strong> </p>
+      <p><strong>Distrito:{centro.distrito}</strong> </p>
     </div>
   );
 };

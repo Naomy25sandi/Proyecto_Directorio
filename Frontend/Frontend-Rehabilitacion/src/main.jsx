@@ -10,7 +10,8 @@ import Admin from './paginas/Admin.jsx'
 import AcercaNosotros from './paginas/AcercaNosotros.jsx'
 import CentrosInfo from './paginas/CentrosInfo.jsx'
 import { AuthProvider } from './rutas/AuthProvider.jsx';
-
+import RutaPrivada from './rutas/RutaPrivada.jsx';
+import { RutaPrivadaSuperUsuario } from './rutas/RutaPrivada.jsx';
 
 const router = createBrowserRouter([
   {
@@ -27,27 +28,26 @@ const router = createBrowserRouter([
   },
   {
     path: "/micuenta",
-    element: <Micuenta />
+    element: <RutaPrivada route={<Micuenta />} />
   },
   {
     path: "/admin",
-    element: <Admin/>
+    element: <RutaPrivada route={<Admin />} />  // Usar RutaPrivadaSuperUsuario para superusuario
   },
   {
     path: "/AcercaNosotros",
-    element: <AcercaNosotros/>
+    element: <AcercaNosotros />
   },
-
   {
     path: "/centros/:id",
-    element: <CentrosInfo/>
+    element: <CentrosInfo />
   }
 ]);
 // llame el AuthProvider aca
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <AuthProvider>
-    <RouterProvider router={router} />
+      <RouterProvider router={router} />
     </AuthProvider>
 
   </StrictMode>,

@@ -6,8 +6,8 @@ import Swal from 'sweetalert2';
 import Saludar from '../components/Saludar';
 import '../Style/login.css';
 import { useNavigate } from 'react-router-dom';
-import { crearCookie } from '../Services/cookies';
-
+import { crearCookie, traerCookie } from '../Services/cookies';
+import { useAuth } from '../rutas/AuthProvider';
 
 
 const Login = () => {
@@ -16,7 +16,14 @@ const Login = () => {
     const [cargando, setCargando] = useState(false); // Estado para indicar si se está cargando
     const [userName, setUserName] = useState("");
     const navigate = useNavigate();
-    const { isLoggedIn, setIsLoggedIn, setIsSuperUser } = useContext(AuthContext);
+    const { inicia, cerrar, setToken, setIsSuperUser } = useAuth();  // Usar el hook para acceder al contexto
+
+    useEffect(() => {
+        const tokenCookie = traerCookie("token");  // Método para obtener la cookie "token"
+        if (tokenCookie) {
+            setToken(true);
+        }
+    }, []);
 
     const validarEmail = (email) => {
         const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -65,8 +72,9 @@ const Login = () => {
                 const { id, username, super: isSuperUser, correo, apellido } = respuesta.data.usuario || {};
                 console.log(id, username, isSuperUser);
                 setUserName(username || "usuario");
-                //setToken(data.token_acceso);
-                setIsLoggedIn(true);
+
+                setToken(true);
+                inicia();
                 setIsSuperUser(isSuperUser);
                 crearCookie("super", isSuperUser, 1);
                 crearCookie("usuario", username, 1);
@@ -107,7 +115,7 @@ const Login = () => {
 
     return (
         <div className="login-container">
-            {isLoggedIn ? (
+            {token ? (
                 <Saludar username={userName} />
             ) : (
 

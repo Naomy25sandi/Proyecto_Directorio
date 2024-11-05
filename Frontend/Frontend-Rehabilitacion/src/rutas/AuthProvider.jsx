@@ -4,11 +4,14 @@ import React, { createContext, useState, useContext } from 'react';
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-    const [isLoggedIn, setIsLoggedIn] = useState(false); // Estado para saber si el usuario está autenticado
-    const [isSuperUser, setIsSuperUser] = useState(false); // Estado para superusuario
-    const [token, setToken] = useState(null)
+    const [isSuperUser, setIsSuperUser] = useState(false);  // Estado para superusuario
+    const [token, setToken] = useState(null);  // Estado para el token de autenticación
+
+    const inicia = () => setToken(true);  // Inicializa el token (usuario autenticado)
+    const cerrar = () => setToken(false);  // Cierra la sesión (elimina el token)
+
     return (
-        <AuthContext.Provider value={{ isLoggedIn, setIsLoggedIn, isSuperUser, setIsSuperUser, token, setToken }}>
+        <AuthContext.Provider value={{ isSuperUser, setIsSuperUser, token, setToken, inicia, cerrar }}>
             {children}
         </AuthContext.Provider>
     );

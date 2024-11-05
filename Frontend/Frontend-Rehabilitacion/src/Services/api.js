@@ -86,16 +86,20 @@ const deleteProductos = async (id, endpoint) => {
         console.log(error);
     }
 };
+
 const getBusqueda = async (busqueda) => {
     try {
-        const peticion = await fetch(`http://127.0.0.1:8000/centros/api/buscar/centros/?q=${busqueda}`)
-        const data = await peticion.json()
+        const peticion = await fetch(`http://127.0.0.1:8000/centros/api/buscar/centros/?q=${busqueda}`);
+        if (!peticion.ok) {
+            throw new Error('Error en la respuesta del servidor');
+        }
+        const data = await peticion.json();
         console.log(data);
-        return data
+        return data;
     } catch (error) {
-        console.error(error);
+        console.error('Hubo un problema con la búsqueda:', error);
+        
     }
-
-}
+};
 // Exportar todos los métodos
 export { GetData, postData, actualizaDatos, deleteProductos, getBusqueda };
