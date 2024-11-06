@@ -10,14 +10,13 @@ import re
 from rest_framework import viewsets
 from .models import Blacklist
 from .serializers import BlacklistSerializer
-
 from rest_framework.permissions import AllowAny
 
 
 # Create your views here.
 # # View es la logica y se tienen que conectar con las URL
 class RegistroView(APIView):
-    permission_classes = [AllowAny]
+    permission_classes = [AllowAny] # sobreescribir permisos 
     def post(self,request):# Peticion
         username = request.data.get('username')
         email = request.data.get('email')

@@ -4,10 +4,11 @@ import Contacto from '../components/Contacto';
 import '../Style/navbar.css';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from "../rutas/AuthProvider";// Importa el contexto
+import { traerCookie, borrarTodoCookies } from '../Services/cookies';
 
 const Navbar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { isLoggedIn, isSuperUser, setIsLoggedIn } = useContext(AuthContext); // Accede al contexto
+  const { token, isSuperUser, setToken, cerrar } = useContext(AuthContext); // Accede al contexto
   const navigate = useNavigate();
 
   const openModal = () => setIsModalOpen(true);
@@ -34,9 +35,10 @@ const Navbar = () => {
   };
 
   const handleLogoutClick = () => {
-    setIsLoggedIn(false); 
+    setToken(false); 
     cerrar();// Cierra la sesión
     navigate('/'); // Redirige al home
+    borrarTodoCookies()
   };
 
   return (
@@ -69,7 +71,7 @@ const Navbar = () => {
                   Centros
                 </a>
               </li>
-              {isLoggedIn ? (
+              {token ? (
                 <>
                   <li className="nav-item">
                     <a className="nav-link" onClick={() => navigate('/micuenta')} style={{ cursor: 'pointer' }}>
@@ -85,7 +87,7 @@ const Navbar = () => {
                   )}
                   <li className="nav-item">
                     <a className="nav-link" onClick={handleLogoutClick} style={{ cursor: 'pointer' }}>
-                      Cerrar Sesión
+                    {traerCookie("token") ? "Cerrar Sesión" : "Iniciar Sesión" }
                     </a>
                   </li>
                 </>

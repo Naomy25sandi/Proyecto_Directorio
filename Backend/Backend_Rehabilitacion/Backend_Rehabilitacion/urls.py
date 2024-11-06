@@ -9,7 +9,7 @@ urlpatterns = [
     path('registroAdmin/',RegistroAdminView.as_view()),
     path('inicio/',LoginView.as_view()),
     path('centros/',include('centros_rehabilitacion.urls')),
-    #path('api/user/profile/', obtener_perfil_usuario, name='perfil_usuario'), 
+     
     # El include accede a las urls de la app centros_rehabilitacion. 
     # Entre comillas se pone el nombre de la app y luego se pone el nombre del archivo urls.py
 

@@ -116,25 +116,20 @@ const Login = () => {
 
     return (
         <div className="login-container">
-            {token ? (
-                <Saludar username={userName} />
-            ) : (
+            <>
 
-                <>
-
-                    <div className="login-image">
-                        <img src="src/assets/corazon.avif" alt="Inicio Sesión" />
-                    </div>
-                    <LoginForm
-                        alEnviar={validaUsuario}
-                        setCorreo={setCorreo}
-                        setClave={setClave}
-                        correo={correo}
-                        clave={clave}
-                        cargando={cargando}
-                    />
-                </>
-            )}
+                <div className="login-image">
+                    <img src="src/assets/corazon.avif" alt="Inicio Sesión" />
+                </div>
+                <LoginForm
+                    alEnviar={validaUsuario}
+                    setCorreo={setCorreo}
+                    setClave={setClave}
+                    correo={correo}
+                    clave={clave}
+                    cargando={cargando}
+                />
+            </>
         </div>
     );
 };

@@ -1,8 +1,8 @@
-from django.db import models
-from django.contrib.auth.models import User
+from django.db import models #se inporta el módulo necesario para usar los models Django 
+from django.contrib.auth.models import User # Importo el modelo User Django
 
 # Create your models here.
-class Usuario(models.Model):
+class Usuario(models.Model): # creo la clase Usuario
     user= models.OneToOneField(User,on_delete=models.CASCADE)
  
  # creacion de la clase Blacklist   

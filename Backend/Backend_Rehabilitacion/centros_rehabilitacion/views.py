@@ -3,15 +3,14 @@ from rest_framework import generics
 from django.db.models import Q  # Asegúrate de importar Q para realizar búsquedas complejas
 from .models import Centro, Tratamientos
 from .serializers import CentroSerializer, TratamientoSerializer
-#from rest_framework.permissions import IsAuthenticated, IsAdminUser
+
 
 
 class CentroView(generics.ListCreateAPIView):
     queryset = Centro.objects.all()
     serializer_class = CentroSerializer
-    # permission_classes = [IsAuthenticated]  # Para que un endpoint requiera del token para usarse
-    # permission_classes = [IsAdminUser]  # Para que solo un administrador pueda usar ese endpoint
-
+    
+  
 
 
 class CentroUpdateView(generics.UpdateAPIView):

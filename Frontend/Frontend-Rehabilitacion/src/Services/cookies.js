@@ -23,3 +23,14 @@ const traerCookie=(nombre)=> {
 }
 export {traerCookie}
 
+const borrarTodoCookies=()=>{
+    let cookies = document.cookie.split(";");//guarda todas las cokies
+    for (let i = 0; i < cookies.length; i++) {// iteramos en todas las cookies almacenadas
+        let cookie = cookies[i];
+        let eqPos = cookie.indexOf("=");//busca el signo de igual
+        let name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;//si encuentra el signo de igual, guarda el nombre de la cookie
+        document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";//borra la cookie
+    }
+}	
+export {borrarTodoCookies}
+

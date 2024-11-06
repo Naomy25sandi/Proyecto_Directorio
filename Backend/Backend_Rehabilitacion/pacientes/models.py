@@ -7,9 +7,7 @@ class Paciente(models.Model):
     genero = models.CharField(max_length=10)  # "masculino", "femenino"
     historia_clinica = models.TextField()
     
-# duda con el y se me olvido poner la llave foranea, ahora como la agrego
-    # def __str__(self):
-    # return ?
+
     
     
 
