@@ -11,12 +11,13 @@ from rest_framework import viewsets
 from .models import Blacklist
 from .serializers import BlacklistSerializer
 
-#from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import AllowAny
 
 
 # Create your views here.
 # # View es la logica y se tienen que conectar con las URL
 class RegistroView(APIView):
+    permission_classes = [AllowAny]
     def post(self,request):# Peticion
         username = request.data.get('username')
         email = request.data.get('email')
@@ -47,6 +48,7 @@ class RegistroView(APIView):
         return Response({'success': 'Usuario creado'}, status=status.HTTP_201_CREATED) # creamos nuevo usuario
 
 class LoginView(APIView):
+    permission_classes = [AllowAny]
     def post(self, request):
         email = request.data.get('email')
         password = request.data.get('password')
@@ -70,9 +72,9 @@ class LoginView(APIView):
                     'super': usuario.is_superuser,  # Indica si es superusuario
                     'correo':usuario.email,
                     'apellido':usuario.last_name,
+                    'token_acceso': str(refresh.access_token),
+                    'token_refresco': str(refresh)
                 },
-                'token_acceso': str(refresh.access_token),
-                'token_refresco': str(refresh)
             },status=status.HTTP_200_OK)
             
 

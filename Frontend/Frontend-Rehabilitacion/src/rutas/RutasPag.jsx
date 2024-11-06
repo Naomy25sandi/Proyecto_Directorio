@@ -8,6 +8,7 @@ import AcercaNosotros from '../paginas/AcercaNosotros';
 import CentrosInfo from '../paginas/CentrosInfo';
 import { AuthProvider } from '../rutas/AuthProvider';
 import RutaPrivada, { RutaPrivadaSuperUsuario } from './RutaPrivada';
+import Centros from '../paginas/Centros';
 
 const RutasPag = () => {
     return (
@@ -20,6 +21,7 @@ const RutasPag = () => {
                 <Route path='/admin' element={<RutaPrivada route={<Micuenta />} />} />
                 <Route path='/AcercaNosotros' element={<AcercaNosotros />} />
                 <Route path='/centros/:id' element={<CentrosInfo />} />
+                <Route path='/centros' element={<Centros />} />
             </Routes>
 
         </AuthProvider>

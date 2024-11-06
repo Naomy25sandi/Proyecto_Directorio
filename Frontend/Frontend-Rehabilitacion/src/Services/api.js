@@ -1,5 +1,8 @@
+import { traerCookie } from "./cookies";
+
 const API_URL = "http://127.0.0.1:8000/"
 
+const token = traerCookie("")
 // Método para obtener datos
 const GetData = async (endpoint) => {
     try {
@@ -27,6 +30,31 @@ const postData = async (obj, endpoint) => {
             headers: {
                 "Content-type": "application/json",
                 //"Authorization": `Bearer ${token}`, //agregar token
+            },
+            body: JSON.stringify(obj),
+        });
+
+        const respuesta = await response.json();
+
+        if (!response.ok) {
+            // Aquí puedes lanzar un error si la respuesta no es ok
+            return { success: false, error: respuesta.error || 'Error desconocido' };
+        } else {
+            return { success: true, data: respuesta };
+        }
+    } catch (error) {
+        console.error("Error en postData:", error);
+        return { success: false, error: 'Error en la conexión' };
+    }
+};
+
+const usuariosPost = async (obj, endpoint) => {
+    try {
+        //const token = localStorage.getItem('token'); 
+        let response = await fetch(`${API_URL}${endpoint}`, {
+            method: "POST",
+            headers: {
+                "Content-type": "application/json",
             },
             body: JSON.stringify(obj),
         });
@@ -89,16 +117,16 @@ const deleteProductos = async (id, endpoint) => {
 
 const getBusqueda = async (busqueda) => {
     try {
-      const peticion = await fetch(`http://127.0.0.1:8000/centros/api/buscar/centros/?q=${busqueda}`);
-      if (!peticion.ok) {
-        throw new Error('Error en la respuesta del servidor');
-      }
-      const data = await peticion.json(); // Parseamos la respuesta como JSON
-      console.log(data);
-      return data; // Devolvemos los resultados
+        const peticion = await fetch(`http://127.0.0.1:8000/centros/api/buscar/centros/?q=${busqueda}`);
+        if (!peticion.ok) {
+            throw new Error('Error en la respuesta del servidor');
+        }
+        const data = await peticion.json(); // Parseamos la respuesta como JSON
+        console.log(data);
+        return data; // Devolvemos los resultados
     } catch (error) {
-      console.error('Hubo un problema con la búsqueda:', error);
+        console.error('Hubo un problema con la búsqueda:', error);
     }
-  };
+};
 // Exportar todos los métodos
-export { GetData, postData, actualizaDatos, deleteProductos, getBusqueda };
+export { GetData, postData, actualizaDatos, deleteProductos, getBusqueda, usuariosPost };

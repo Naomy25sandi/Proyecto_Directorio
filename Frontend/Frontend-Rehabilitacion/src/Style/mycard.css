@@ -1,6 +1,6 @@
 .cartas {
     min-width: 18rem;
-    max-height: 600px;
+    
     display: flex;
     flex-direction: column; 
     justify-content: space-between; 

@@ -11,7 +11,7 @@ const Mybarra = ({ onSearch }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     onSearch(query);
-    console.log('onSearch:', onSearch);  
+    console.log('onSearch:', query);  
   };
 
   return (

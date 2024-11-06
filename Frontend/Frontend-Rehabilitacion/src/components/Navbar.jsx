@@ -25,6 +25,10 @@ const Navbar = () => {
     navigate('/AcercaNosotros');
   };
 
+  const Centros = () => {
+    navigate('/AcercaNosotros');
+  };
+
   const handleHomeClick = () => {
     navigate('/');
   };
@@ -57,6 +61,11 @@ const Navbar = () => {
               <li className="nav-item">
                 <a className="nav-link" onClick={AboutUs} style={{ cursor: 'pointer' }}>
                   Sobre Nosotros
+                </a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" onClick={AboutUs} style={{ cursor: 'pointer' }}>
+                  Centros
                 </a>
               </li>
               {isLoggedIn ? (
@@ -97,9 +106,9 @@ const Navbar = () => {
             <a className="btn" onClick={openModal}>
               <Button className="btn btn-primary" titulo='Contáctenos' evento={openModal} />
 
-              </a>
-              <Contacto isOpen={isModalOpen} onClose={closeModal} />
-            
+            </a>
+            <Contacto isOpen={isModalOpen} onClose={closeModal} />
+
           </div>
         </div>
       </nav>

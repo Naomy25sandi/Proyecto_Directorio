@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Button from '../components/Button';
-import { postData } from '../Services/api';
+import { postData, usuariosPost } from '../Services/api';
 import Swal from "sweetalert2";
 import '../Style/registro.css';
 import { useNavigate } from 'react-router-dom';
@@ -14,12 +14,12 @@ const Registro = () => {
     const [clave, setClave] = useState("");
     const [cargando, setCargando] = useState(false);// Estado para indicar si se está cargando
     const navigate = useNavigate();
-     
+
     const validarEmail = (email) => {// fncion para validar caracteres especiales 
         const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return re.test(String(email).toLowerCase());//  Verifica si el correo cumple con la expresion
     };
-    
+
     // Función para manejar el registro del usuario
     const registrarCuenta = async (e) => {
         e.preventDefault();// prevenir que se recargue
@@ -34,7 +34,7 @@ const Registro = () => {
             });
             return;
         }
-         // Validamos que el correo electrónico sea válido
+        // Validamos que el correo electrónico sea válido
         if (!validarEmail(correo)) {
             Swal.fire({
                 icon: 'error',
@@ -43,7 +43,7 @@ const Registro = () => {
             });
             return;
         }
-       // creamos usuario para almacenar la información de cada input del formulario
+        // creamos usuario para almacenar la información de cada input del formulario
         const usuario = {
             username: nombre,
             last_name: apellidos,
@@ -53,9 +53,9 @@ const Registro = () => {
 
         setCargando(true); // activa el estado de carga
         // con la variable respuesta llamamos el metodo para enviar la información Backend
-        const respuesta = await postData(usuario, "registro/");
+        const respuesta = await usuariosPost(usuario, "registro/");
         setCargando(false); // Desactivar estado de carga
-            
+
         if (respuesta && respuesta.success) {
             Swal.fire({
                 icon: 'success',
@@ -97,7 +97,7 @@ const Registro = () => {
                             onChange={(e) => setApellidos(e.target.value)}
                         />
                         <input
-                            type="email" 
+                            type="email"
                             placeholder="Correo Electrónico"
                             value={correo}
                             onChange={(e) => setCorreo(e.target.value)}

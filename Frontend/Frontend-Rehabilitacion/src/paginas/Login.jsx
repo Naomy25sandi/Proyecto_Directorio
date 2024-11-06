@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { AuthContext } from '../rutas/AuthProvider';//lo pase para aca a ver si era eso?
 import LoginForm from '../components/Loginform';
-import { postData } from '../Services/api';
+import { postData, usuariosPost } from '../Services/api';
 import Swal from 'sweetalert2';
 import Saludar from '../components/Saludar';
 import '../Style/login.css';
@@ -17,7 +17,7 @@ const Login = () => {
     const [userName, setUserName] = useState("");
     const navigate = useNavigate();
     const { inicia, cerrar, setToken, setIsSuperUser } = useAuth();  // Usar el hook para acceder al contexto
-
+    const token = traerCookie("token")
     useEffect(() => {
         const tokenCookie = traerCookie("token");  // Método para obtener la cookie "token"
         if (tokenCookie) {
@@ -58,7 +58,7 @@ const Login = () => {
 
         setCargando(true);
         try {
-            const respuesta = await postData(usuario, "inicio/");
+            const respuesta = await usuariosPost(usuario, "inicio/");
 
             setCargando(false);
 
@@ -69,7 +69,7 @@ const Login = () => {
                     text: 'Has iniciado sesión correctamente.',
                 });
 
-                const { id, username, super: isSuperUser, correo, apellido } = respuesta.data.usuario || {};
+                const { id, username, super: isSuperUser, correo, apellido, token_acceso } = respuesta.data.usuario || {};
                 console.log(id, username, isSuperUser);
                 setUserName(username || "usuario");
 
@@ -80,6 +80,7 @@ const Login = () => {
                 crearCookie("usuario", username, 1);
                 crearCookie("apellido", apellido, 1)
                 crearCookie("correo", correo, 1)
+                crearCookie("token", token_acceso, 1)
                 if (isSuperUser) {
                     navigate('/admin');
                 } else {
