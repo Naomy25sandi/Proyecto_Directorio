@@ -10,31 +10,26 @@ import Carrousel from '../components/Carrousel';
 
 const Home = () => {
   const [centros, setCentros] = useState([]);// Estado para almacenar la lista de centros
-  //const [filteredCentros, setFilteredCentros] = useState([]);; // Estado para almacenar los centros filtrados según la búsqueda
   const esAdmin = traerCookie("super");// Verificamos si el usuario es admin com la cookie
-  const [busqueda, setBusqueda] = useState('')
-  // useEffect que se ejecuta al montar el component
-  useEffect(() => {
-    const traerCentros = async () => {
-      if (busqueda.trim()) {
-        const buscarCentro = await getBusqueda(busqueda)
-        setCentros(buscarCentro);
-        console.log('Centros encontrados:', buscarCentro);
-      } else {
-        const getCentros = await GetData('/centros/api/buscar/centros/')
-        setCentros(getCentros)
-      }
+  //const [busqueda, setBusqueda] = useState();
+// si es necesario usar useEffect???
+
+
+  const traerCentros = async (query) => {
+     try{
+      const data = await getBusqueda(query)
+      setCentros(data);
+      
+      } catch (error) {
+        console.error('Error fetching articles:', error)
+
     };
-    traerCentros();
-    // Llamamos a la función para traer los centros
-  }, [busqueda]);// la dependecia la dejamos vacia para se ejecute una sola vez
-
+  }     
  
-
   return (
     <>
       <Navbar />
-      <Mybarra onSearch={setBusqueda}/>
+      <Mybarra onSearch={traerCentros}/>
       <Carrousel />
       <h1 className="text-center mt-5">Centros de Rehabilitación</h1>
       <div className='lista-centros'>

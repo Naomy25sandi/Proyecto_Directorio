@@ -4,20 +4,24 @@ import React, { useState } from 'react';
 const Mybarra = ({ onSearch }) => {
   const [query, setQuery] = useState('');
 
-  const handleSearch = async(e) => {
-    e.preventDefault();
+  const handleChange = (event)=>{
+    setQuery(event.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
     onSearch(query);
     console.log('onSearch:', onSearch);  
   };
 
   return (
     <>
-    <form className='d-flex' onSubmit={handleSearch}>
+    <form className='d-flex' onSubmit={handleSubmit}>
       <input className="form-control me-2"
         type="text" 
         placeholder="Buscar centros" 
         value={query} 
-        onChange={(e) => setQuery(e.target.value)} 
+        onChange={handleChange} 
       />
       <button className="btn btn-primary"  type="submit">Buscar</button>
     </form>
