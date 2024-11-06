@@ -6,9 +6,9 @@ import Micuenta from '../paginas/Micuenta';
 import Admin from '../paginas/Admin';
 import AcercaNosotros from '../paginas/AcercaNosotros';
 import CentrosInfo from '../paginas/CentrosInfo';
+import Centros from '../paginas/Centros';
 import { AuthProvider } from '../rutas/AuthProvider';
 import RutaPrivada, { RutaPrivadaSuperUsuario } from './RutaPrivada';
-import Centros from '../paginas/Centros';
 
 const RutasPag = () => {
     return (
@@ -18,10 +18,11 @@ const RutasPag = () => {
                 <Route path='/' element={<Home />} />
                 <Route path='/inicio' element={<Login />} />
                 <Route path='/Registro' element={<Registro />} />
-                <Route path='/admin' element={<RutaPrivada route={<Micuenta />} />} />
+                <Route path='/admin' element={<RutaPrivadaSuperUsuario route={<Admin />} />} />
+                <Route path='/micuenta' element={<RutaPrivada route={<Micuenta/>}/>}/>
                 <Route path='/AcercaNosotros' element={<AcercaNosotros />} />
                 <Route path='/centros/:id' element={<CentrosInfo />} />
-                <Route path='/centros' element={<Centros />} />
+                <Route path='/centros/' element={<Centros/>} />
             </Routes>
 
         </AuthProvider>

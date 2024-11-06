@@ -26,7 +26,7 @@ const Navbar = () => {
   };
 
   const Centros = () => {
-    navigate('/AcercaNosotros');
+    navigate('/centros');
   };
 
   const handleHomeClick = () => {
@@ -34,7 +34,8 @@ const Navbar = () => {
   };
 
   const handleLogoutClick = () => {
-    setIsLoggedIn(false); // Cierra la sesión
+    setIsLoggedIn(false); 
+    cerrar();// Cierra la sesión
     navigate('/'); // Redirige al home
   };
 
@@ -64,7 +65,7 @@ const Navbar = () => {
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" onClick={AboutUs} style={{ cursor: 'pointer' }}>
+                <a className="nav-link" onClick={Centros} style={{ cursor: 'pointer' }}>
                   Centros
                 </a>
               </li>

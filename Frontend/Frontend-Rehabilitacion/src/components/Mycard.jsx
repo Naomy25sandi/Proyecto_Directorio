@@ -16,7 +16,7 @@ const Mycard = ({ nombre, descripcion, imagen, id, btnEliminar, btnEditar, mostr
   return (
     <div>
       <Card className='cartas'>
-        <Card.Img variant="top" src={imagen} /> {/* Imagen del centro */}
+        <Card.Img className='top' variant="top" src={imagen} /> {/* Imagen del centro */}
         <Card.Body>
           <Card.Title>{nombre}</Card.Title>
           <Card.Text>{descripcion}</Card.Text>
