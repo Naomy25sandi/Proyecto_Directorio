@@ -23,7 +23,7 @@ const Micuenta = () => {
 
   // Función para guardar la información editada
   const handleSave = () => {
-    // Aquí puedes actualizar las cookies o enviar los datos al backend
+    // se actualizar las cookies 
     crearCookie("usuario", formData.usuario);
     crearCookie("apellido", formData.apellido);
     crearCookie("correo", formData.correo);

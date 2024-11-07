@@ -9,7 +9,7 @@ const CentrosInfo = () => {
   const { centro } = location.state || {}; // Maneja en caso de que no haya estado centro lo inicializa como undefined
 
   return (
-    <div className='contner mt-5'>
+    <div className='container mt-5'>
          <Navbar/>
         {centro ? (
         <InfoCentros centro={centro} /> // si centros tiene un valor se renderiza el componente InfoCentros y se le pasa centro como prop

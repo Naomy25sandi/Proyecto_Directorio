@@ -8,6 +8,7 @@ import { getBusqueda, GetData } from '../Services/api';
 import { traerCookie } from '../Services/cookies';
 import Carrousel from '../components/Carrousel';
 
+
 const Home = () => {
   const [centros, setCentros] = useState([]);// Estado para almacenar la lista de centros
   const esAdmin = traerCookie("super");// Verificamos si el usuario es admin com la cookie
@@ -29,16 +30,19 @@ const Home = () => {
   return (
     <>
       <Navbar />
+      <br /> <br />
       <Mybarra onSearch={traerCentros}/>
+      <br /><br />
       <Carrousel />
       <h1 className="text-center mt-5">Centros de Rehabilitación</h1>
       <div className='lista-centros'>
         {centros.length === 0 ? (
-          <h1>No hay centros que coincidan con tu búsqueda</h1>
+          <h1 >No hay centros que coincidan con tu búsqueda</h1>
         ) : (
           <ListaCards cards={centros} mostrarBotones={esAdmin} />
         )}
       </div>
+      
       <Footer />
     </>
   );

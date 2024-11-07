@@ -11,7 +11,7 @@ const Modales = ({ isOpen, onClose }) => {
     <div className="modal-content">
       <h2>Nuestra ubicacion</h2>
       <Map/> {/* Componente que muestra el mapa */}
-      <button onClick={onClose}>Cerrar</button>
+      <button onClick={onClose} aria-label="Cerrar modal">Cerrar</button>
     </div>
   </div>
   )

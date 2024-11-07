@@ -1,11 +1,11 @@
 import Carousel from 'react-bootstrap/Carousel';
-// creacion de mi componente Navbar
+// creacion de mi componente Carousel
 function Carrousel() {
     return (
         <div className='container'>
         <Carousel >
             <Carousel.Item  >
-                <img 
+                <img className="d-block w-100" 
                   
                     width={"1200px"}
                     src="src/assets/Captura.png"
@@ -17,7 +17,7 @@ function Carrousel() {
                 </Carousel.Caption>
             </Carousel.Item>
             <Carousel.Item>
-                <img 
+                <img className="d-block w-100"
                     width={"1200px"}
                     src="src\assets\Captura2.png"
                     alt=""
@@ -28,7 +28,7 @@ function Carrousel() {
                 </Carousel.Caption>
             </Carousel.Item>
             <Carousel.Item>
-                <img 
+                <img className="d-block w-100"
                     width={"1200px"}
                     src="src\assets\Captura3.png"
                     alt=""

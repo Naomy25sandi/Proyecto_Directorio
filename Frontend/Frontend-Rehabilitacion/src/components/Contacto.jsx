@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import Button from './Button';
-import '../Style/contacto.css';
-import emailjs from 'emailjs-com';
+import Button from './Button'; // componente boton
+import '../Style/contacto.css'; //  hoja d eestilos
+import emailjs from 'emailjs-com';// manejo del email
 
 // Componente Contacto, que recibe dos props: isOpen y onClose
 const Contacto = ({ isOpen, onClose }) => {
@@ -62,7 +62,7 @@ const Contacto = ({ isOpen, onClose }) => {
   return (
     <div className="modal-overlay">
       <div className="modal-content">
-        <p className='h-5'>Contáctenos</p>
+        <p className='h-2' >Contáctenos</p>
         
         {/* Mostrar el mensaje de estado */}
         {status && <p className="status-message">{status}</p>}
@@ -93,18 +93,17 @@ const Contacto = ({ isOpen, onClose }) => {
               required
             />
           </div>
-          
-          <div className="modal-actions">
-            <Button titulo={sending ? 'Enviando...' : 'Enviar'} type="submit" disabled={sending} /> 
-            <Button evento={onClose} titulo='Cerrar' />
-          </div>
+        
+            <Button titulo={sending ? 'Enviando...' : 'Enviar'} type="submit" disabled={sending} className="w-60 mb-2"/> 
+            <Button evento={onClose} titulo='Cerrar'className="w-60" />
+
+            <a href='correo'>Correo electrónico: directoriorenacer@gmail.com</a>
+            <br />
+            <a href='tel'>Telefono:85657138 </a>
+
         </form>
 
-        <div className="contact-info">
-          <a href="mailto:info@renacer.com">Email: info@renacer.com</a>
-          <br />
-          <a href="tel:+1234567890">Teléfono: (561)85657138</a>
-        </div>
+        
       </div>
     </div>
   );

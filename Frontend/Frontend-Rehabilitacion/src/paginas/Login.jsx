@@ -17,10 +17,10 @@ const Login = () => {
     const [userName, setUserName] = useState("");
     const navigate = useNavigate();
     const { inicia, cerrar, setToken, setIsSuperUser } = useAuth();  // Usar el hook para acceder al contexto
-    const token = traerCookie("token")
+    const token = traerCookie("token")// Trae el token desde las cookies
     useEffect(() => {
         const tokenCookie = traerCookie("token");  // Método para obtener la cookie "token"
-        if (tokenCookie) {
+        if (tokenCookie) {// Método para obtener la cookie
             setToken(true);
         }
     }, []);

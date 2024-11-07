@@ -6,39 +6,39 @@ import { useNavigate } from 'react-router-dom';
 import { AuthContext } from "../rutas/AuthProvider";// Importa el contexto
 import { traerCookie, borrarTodoCookies } from '../Services/cookies';
 
-const Navbar = () => {
+const Navbar = () => {// funciones y estadoa para el modal
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { token, isSuperUser, setToken, cerrar } = useContext(AuthContext); // Accede al contexto
   const navigate = useNavigate();
-
+ 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
-
+ //Funcion para dirigir a inicio
   const handleLoginClick = () => {
     navigate('/inicio');
   };
-
+ // Funcion para ir a Registro
   const handleRegisterClick = () => {
     navigate('/Registro');
   };
-
+ // funcion para ir a la pagina de nuestra vision y mision
   const AboutUs = () => {
     navigate('/AcercaNosotros');
   };
-
+ // funcion para ir a centros
   const Centros = () => {
     navigate('/centros');
   };
-
+ // funcion para ir a home
   const handleHomeClick = () => {
     navigate('/');
   };
-
+// funcion para cerrar sesion
   const handleLogoutClick = () => {
     setToken(false); 
     cerrar();// Cierra la sesión
     navigate('/'); // Redirige al home
-    borrarTodoCookies()
+    borrarTodoCookies()//borra cookies
   };
 
   return (

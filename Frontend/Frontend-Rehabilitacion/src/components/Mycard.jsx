@@ -33,6 +33,4 @@ const Mycard = ({ nombre, descripcion, imagen, id, btnEliminar, btnEditar, mostr
   );
 };
 
-export default Mycard;
-
-// exportar componente para seru usado donde lo necesite
+export default Mycard;// exportar componente para seru usado donde lo necesite

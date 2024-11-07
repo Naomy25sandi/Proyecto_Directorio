@@ -33,7 +33,7 @@ const ModalAggCentros = ({ mostrar, abrir, cerrar }) => {// Componente para agre
   };
 
   const recargaPag = () => {// Función para recargar la página
-    setRecarga(!recarga)
+    setRecarga(!recarga) //Cambia el estado recarga para forzar una recarga de la página.
   }
 
   // Función para subir un nuevo centro

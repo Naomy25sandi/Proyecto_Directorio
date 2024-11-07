@@ -9,7 +9,7 @@ const Mybarra = ({ onSearch }) => {
   };
 
   const handleSubmit = (event) => {
-    event.preventDefault();
+    event.preventDefault();// Prevenimos la recarga de la página al enviar el formulario
     onSearch(query);
     console.log('onSearch:', query);  
   };

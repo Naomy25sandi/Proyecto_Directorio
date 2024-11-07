@@ -1,4 +1,4 @@
-/* Modal.css */
+
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -14,10 +14,10 @@
   
   .modal-content {
     background: rgba(255, 255, 255, 0.581);
-    padding: 20px;
+    padding: 40px;
     border-radius: 5px;
     max-width: 600px;
-    width: 200%;
+    width: 400%;
   }
 
   .modal-content {
