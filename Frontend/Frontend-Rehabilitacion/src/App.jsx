@@ -1,16 +1,20 @@
-import { useState } from 'react'
+//import { useState } from 'react';
 
-import './App.css'
-import Button from './components/Button'
+import './App.css';
+import { AuthProvider } from './rutas/AuthProvider';
+import RutasPag from './rutas/RutasPag';
+// Asegúrate de que la ruta sea correcta
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-  
-    </>
-  )
+      
+    <AuthProvider>
+      
+      <RutasPag />
+    
+    </AuthProvider>
+    
+  );
 }
 
-export default App
+export default App;

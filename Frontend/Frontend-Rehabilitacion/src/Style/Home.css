@@ -1,0 +1,34 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* .lista-centros {
+    display: grid;
+    grid-template-columns: auto;
+    margin-top: 20px;
+} */
+
+.card-container {
+    display: flex; /* Usar flexbox para alinear elementos */
+    flex-wrap: wrap; /* Permitir que los elementos se envuelvan a la siguiente línea */
+    justify-content: center; /* Centrar elementos horizontalmente */
+    gap: 16px; /* Espacio entre las tarjetas */
+    margin: 20px; /* Margen alrededor del contenedor */
+  }
+  
+ .card {
+    flex: 1 1 calc(25% - 16px); /* Tamaño base para cada tarjeta (4 por fila) */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra de la tarjeta */
+    border-radius: 8px; /* Bordes redondeados */
+    overflow: hidden; /* Cortar contenido que se desborda */
+    background-color: #fff; /* Color de fondo de la tarjeta */
+    padding: 16px; /* Espaciado interno de la tarjeta */
+    transition: transform 0.2s; /* Efecto al pasar el mouse */
+  }
+  
+  .card:hover {
+    transform: translateY(-4px); /* Efecto de elevación al pasar el mouse */
+  }

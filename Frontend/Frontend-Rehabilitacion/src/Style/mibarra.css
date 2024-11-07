@@ -1,0 +1,41 @@
+/* Estilo general para el formulario */
+form {
+    display: flex;
+    flex-wrap: wrap; /* Permite que los elementos se muevan a la siguiente línea si no hay espacio */
+    justify-content: space-between; /* Distribuye el espacio entre los elementos */
+    max-width: 800px; /* Ancho máximo del formulario */
+    margin: 0 auto; /* Centra el formulario en la página */
+  }
+  
+  /* Estilo para cada div que contiene un label y un input/select */
+  form div {
+    flex: 1; /* Permite que cada div tome el mismo espacio */
+    margin: 10px; /* Espacio alrededor de cada div */
+    min-width: 150px; /* Ancho mínimo para cada div */
+  }
+  
+  /* Estilo para los inputs y select */
+  form div input,
+  form div select {
+    width: 100%; /* Hace que los inputs y selects ocupen el 100% del contenedor */
+    padding: 8px; /* Espaciado interno de los inputs */
+    box-sizing: border-box; /* Incluye padding y border en el cálculo del ancho */
+  }
+  
+  /* Estilo para el botón de búsqueda */
+  button {
+    flex: 0 0 100%; /* Hace que el botón ocupe toda la fila */
+    margin: 10px 0; /* Espacio arriba y abajo del botón */
+    padding: 10px; /* Espaciado interno del botón */
+    background-color: #007bff; /* Color de fondo */
+    color: white; /* Color del texto */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+  }
+  
+  /* Efecto hover para el botón */
+  button:hover {
+    background-color: #0056b3; /* Color de fondo al pasar el mouse */
+  }
+  
