@@ -3,13 +3,14 @@ from rest_framework import generics
 from django.db.models import Q  #importe Q para realizar búsquedas complejas
 from .models import Centro, Tratamientos
 from .serializers import CentroSerializer, TratamientoSerializer
+#from rest_framework.permissions import IsAuthenticated, IsAdminUser
 
 
 # creamos la clase centroView hereda listcreate Apiview
 class CentroView(generics.ListCreateAPIView):
     queryset = Centro.objects.all() #conjunto de datos que la vista manejará
     serializer_class = CentroSerializer # convertit objetos a JSON
-    
+    #permission_classes = [IsAuthenticated, IsAdminUser] 
   #GET: Recupera todos los centros en formato JSON.
 #POST: Permite crear nuevos centros enviando los datos requeridos en el cuerpo de la solicitud.
 

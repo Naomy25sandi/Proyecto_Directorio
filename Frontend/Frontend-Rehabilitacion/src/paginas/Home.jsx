@@ -37,7 +37,7 @@ const Home = () => {
       <h1 className="text-center mt-5">Centros de Rehabilitación</h1>
       <div className='lista-centros'>
         {centros.length === 0 ? (
-          <h1 >No hay centros que coincidan con tu búsqueda</h1>
+          <h2 className='text-center mt-5'>No hay centros que coincidan con tu búsqueda</h2>
         ) : (
           <ListaCards cards={centros} mostrarBotones={esAdmin} />
         )}

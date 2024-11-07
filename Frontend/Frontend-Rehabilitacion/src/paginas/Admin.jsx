@@ -20,9 +20,11 @@ const Admin = () => {
     const centro = await GetData('centros/api/centros');//Realizo el llamado para obtener los centros
     setCentros(centro)// actualizo el estado con los datos del objeto centros
   };
+
 // useEffect 
   useEffect(() => {
     traerCentros();
+   
   }, [centros]);
 
   
