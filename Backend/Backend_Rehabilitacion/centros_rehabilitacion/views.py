@@ -1,31 +1,33 @@
 from django.shortcuts import render
 from rest_framework import generics
-from django.db.models import Q  # Asegúrate de importar Q para realizar búsquedas complejas
+from django.db.models import Q  #importe Q para realizar búsquedas complejas
 from .models import Centro, Tratamientos
 from .serializers import CentroSerializer, TratamientoSerializer
 
 
-
+# creamos la clase centroView hereda listcreate Apiview
 class CentroView(generics.ListCreateAPIView):
-    queryset = Centro.objects.all()
-    serializer_class = CentroSerializer
+    queryset = Centro.objects.all() #conjunto de datos que la vista manejará
+    serializer_class = CentroSerializer # convertit objetos a JSON
     
-  
+  #GET: Recupera todos los centros en formato JSON.
+#POST: Permite crear nuevos centros enviando los datos requeridos en el cuerpo de la solicitud.
 
 
-class CentroUpdateView(generics.UpdateAPIView):
+class CentroUpdateView(generics.UpdateAPIView):# manejar las actualizaciones de un solo objeto.
     queryset = Centro.objects.all()
     serializer_class = CentroSerializer
-    lookup_field = "id"
+    lookup_field = "id" # ocupamos el Id para actualizar
 
 
-class CentroDeleteView(generics.DestroyAPIView):
-    queryset = Centro.objects.all()
-    serializer_class = CentroSerializer
-    lookup_field = "id"
+class CentroDeleteView(generics.DestroyAPIView):# eliminar los datos del objeto
+    queryset = Centro.objects.all() #conjunto de datos que la vista manejara
+    serializer_class = CentroSerializer # convierte los datos a JSON
+    lookup_field = "id"# ocupamos el Id para eliminar
 
 
-class TratamientosView(generics.ListCreateAPIView):
+
+class TratamientosView(generics.ListCreateAPIView):# maneja la lista de tratamientos
     queryset = Tratamientos.objects.all()
     serializer_class = TratamientoSerializer
     

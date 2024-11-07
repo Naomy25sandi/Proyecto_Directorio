@@ -26,10 +26,10 @@ const router = createBrowserRouter([
     path: "/registro",
     element: <Registro />
   },
-  // {
-  //   path: "/micuenta",
-  //   element: <RutaPrivada route={<Micuenta />} />
-  // },
+  {
+    path: "/micuenta",
+    element: <RutaPrivada route={<Micuenta />} />
+  },
   {
     path: "/admin",
     element: <RutaPrivada route={<Admin />} />  // Usar RutaPrivadaSuperUsuario para superusuario
@@ -41,11 +41,6 @@ const router = createBrowserRouter([
   {
     path: "/centros/:id",
     element: <CentrosInfo />
-  },
-
-  {
-    path:"/micuenta",
-    element: <Micuenta/>
   }
 ]);
 // llame el AuthProvider aca

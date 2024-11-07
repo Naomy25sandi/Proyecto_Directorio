@@ -1,16 +1,16 @@
 from django.shortcuts import render
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from django.contrib.auth.models import User
-from django.contrib.auth import authenticate
-from rest_framework.authtoken.models import Token
-from rest_framework import status
-from rest_framework_simplejwt.tokens import RefreshToken
-import re
+from rest_framework.views import APIView #clase base para definir vistas
+from rest_framework.response import Response # respuestas JSON u otro formato
+from django.contrib.auth.models import User # modelo para la autenticacion
+from django.contrib.auth import authenticate # funcion para verficar si usuario existe
+from rest_framework.authtoken.models import Token # usado para la autenticacion
+from rest_framework import status# HTTP
+from rest_framework_simplejwt.tokens import RefreshToken #crear tokens JWT
+import re # expresiones regulares
 from rest_framework import viewsets
 from .models import Blacklist
 from .serializers import BlacklistSerializer
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny #
 
 
 # Create your views here.

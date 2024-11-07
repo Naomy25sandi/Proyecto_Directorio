@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from .models import Centro, Tratamientos
 
-class CentroSerializer(serializers.ModelSerializer):
+class CentroSerializer(serializers.ModelSerializer):# clase para enviar y recibir datos de centros
     class Meta:
         model = Centro
         fields = ['id','nombre','descripcion','distrito','provincia','telefono','estado','precio','imagen']

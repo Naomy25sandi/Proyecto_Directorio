@@ -19,11 +19,11 @@ const RutasPag = () => {
                 <Route path='/inicio' element={<Login />} />
                 <Route path='/Registro' element={<Registro />} />
                 <Route path='/admin' element={<RutaPrivadaSuperUsuario route={<Admin />} />} />
-                {/* <Route path='/micuenta' element={<RutaPrivada route={<Micuenta/>}/>}/> */}
+                <Route path='/micuenta' element={<RutaPrivada route={<Micuenta/>}/>}/>
                 <Route path='/AcercaNosotros' element={<AcercaNosotros />} />
                 <Route path='/centros/:id' element={<CentrosInfo />} />
                 <Route path='/centros/' element={<Centros/>} />
-                <Route path='/micuenta' element={<Micuenta/>} />
+               
             </Routes>
 
         </AuthProvider>
