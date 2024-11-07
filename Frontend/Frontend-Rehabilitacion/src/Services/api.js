@@ -6,7 +6,7 @@ const token = traerCookie("token")
 // Método para obtener datos
 const GetData = async (endpoint) => {
     try {
-       
+
         let response = await fetch(`${API_URL}${endpoint}`, {
             method: "GET",
             mode: "cors",
@@ -24,12 +24,13 @@ const GetData = async (endpoint) => {
 
 const postData = async (obj, endpoint) => {
     try {
-       
+
         let response = await fetch(`${API_URL}${endpoint}`, {
             method: "POST",
             headers: {
                 "Content-type": "application/json",
-                
+                "Authorization": `Bearer ${token}`, //agregar token
+
             },
             body: JSON.stringify(obj),
         });
@@ -37,7 +38,7 @@ const postData = async (obj, endpoint) => {
         const respuesta = await response.json();
 
         if (!response.ok) {
-            
+
             return { success: false, error: respuesta.error || 'Error desconocido' };
         } else {
             return { success: true, data: respuesta };
@@ -50,11 +51,12 @@ const postData = async (obj, endpoint) => {
 
 const usuariosPost = async (obj, endpoint) => {
     try {
-       
+
         let response = await fetch(`${API_URL}${endpoint}`, {
             method: "POST",
             headers: {
                 "Content-type": "application/json",
+
             },
             body: JSON.stringify(obj),
         });
@@ -62,7 +64,7 @@ const usuariosPost = async (obj, endpoint) => {
         const respuesta = await response.json();
 
         if (!response.ok) {
-           
+
             return { success: false, error: respuesta.error || 'Error desconocido' };
         } else {
             return { success: true, data: respuesta };
@@ -77,11 +79,12 @@ const usuariosPost = async (obj, endpoint) => {
 // Método para actualizar datos
 const actualizaDatos = async (id, datos, endpoint) => {
     try {
-         
+
         const response = await fetch(`${API_URL}${endpoint}/${id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
+                "Authorization": `Bearer ${token}`, //agregar token
             },
             body: JSON.stringify(datos),
         });
@@ -104,6 +107,9 @@ const deleteProductos = async (id, endpoint) => {
     try {
         const response = await fetch(`${API_URL}${endpoint}/${id}`, {
             method: "DELETE",
+            headers: {
+                "Authorization": `Bearer ${token}`, //agregar token
+            },
         });
         if (response.ok) {
             console.log("Producto eliminado con éxito");

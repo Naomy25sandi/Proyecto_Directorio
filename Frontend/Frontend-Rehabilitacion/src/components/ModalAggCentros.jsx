@@ -1,8 +1,9 @@
-import Modal from 'react-bootstrap/Modal';
-import Button from 'react-bootstrap/Button';
-import { useEffect, useState } from 'react';
+import Modal from 'react-bootstrap/Modal';// importe modal de bootstrap
+import Button from 'react-bootstrap/Button';// componente boton
+import { useState } from 'react';// importo useState
 import Swal from 'sweetalert2';
-import { postData } from '../Services/api';
+import { postData } from '../Services/api';// metodo post para crear
+import '../Style/modales.css'
 
 const ModalAggCentros = ({ mostrar, abrir, cerrar }) => {// Componente para agregar un nuevo centro
   const [nombreCentro, setNombreCentro] = useState(''); // Estado para guardar el nombre del centro
@@ -64,11 +65,6 @@ const ModalAggCentros = ({ mostrar, abrir, cerrar }) => {// Componente para agre
     // window.location.reload();
 
     // Crea un objeto tratamiento con la lista de tratamientos.
-    const tratamiento = {
-      nombre: tratamientos
-    }
-    const peticionCrearTratamiento = await postData(tratamiento, 'centros/api/tratamientos/')
-
     // Verifica si la creación del centro fue exitosa.
     if (peticionCrearCentro.success) { // error Keylor me ayudo habia un .status===201 
       console.log("Centro agregado con éxito");
@@ -113,8 +109,9 @@ const ModalAggCentros = ({ mostrar, abrir, cerrar }) => {// Componente para agre
       </Button>
 
 
+
       <Modal show={mostrar} onHide={cerrar} >
-        <Modal.Header closeButton>
+        <Modal.Header>
           <Modal.Title id="modal-title">Agregar Centros</Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -174,13 +171,7 @@ const ModalAggCentros = ({ mostrar, abrir, cerrar }) => {// Componente para agre
               type="checkbox"
               onChange={(e) => setEstadoCentro(e.target.checked)}
             />
-            <label>Tratamientos</label>
-            <input
-              type="text"
-              onChange={(e) => setTratamientoInput(e.target.value)}
-            />
             <br />
-            <button onClick={() => aggTratamientos()}>Agregar Tratamiento</button>
 
 
             <br />
@@ -195,7 +186,7 @@ const ModalAggCentros = ({ mostrar, abrir, cerrar }) => {// Componente para agre
           </div>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={cerrar}>
+          <Button style={{width: 200}} variant="secondary" onClick={cerrar}>
             Cerrar
           </Button>
           <Button variant="primary" onClick={subirCentro}>
