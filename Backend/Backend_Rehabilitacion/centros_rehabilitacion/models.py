@@ -2,7 +2,7 @@ from django.db import models ##se inporta el módulo necesario para usar los mod
 
 # Create your models here.
 class Centro(models.Model): # clase centro donde vamos a almacenar la info de cada centro
-    nombre = models.CharField(max_length=100,blank=False,null=False)
+    nombre = models.CharField(max_length=100,blank=False,null=False) # autenticacion de models
     descripcion = models.TextField(blank=False,null=False)
     telefono = models.CharField(max_length=15,blank=False,null=False)
     distrito = models.CharField(max_length=15,blank=False,null=False)

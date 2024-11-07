@@ -18,7 +18,6 @@ const ModalAggCentros = ({ mostrar, abrir, cerrar }) => {// Componente para agre
   const [imagenCentro, setImagenCentro] = useState('');// Estado para la imagen del centro.
   const [recarga, setRecarga] = useState(false);// Estado para controlar la recarga de la página.
 
-  let tratamientosLista = []
 
   // Función para manejar la carga de imágenes
   const handleImage = (e) => {
@@ -62,9 +61,8 @@ const ModalAggCentros = ({ mostrar, abrir, cerrar }) => {// Componente para agre
 
     // Envía la solicitud para crear el centro.
     const peticionCrearCentro = await postData(centro, 'centros/api/centros/');
-    // window.location.reload();
+    
 
-    // Crea un objeto tratamiento con la lista de tratamientos.
     // Verifica si la creación del centro fue exitosa.
     if (peticionCrearCentro.success) { // error Keylor me ayudo habia un .status===201 
       console.log("Centro agregado con éxito");
@@ -94,12 +92,7 @@ const ModalAggCentros = ({ mostrar, abrir, cerrar }) => {// Componente para agre
     }
   };
 
-  const aggTratamientos = () => {// Función para agregar tratamientos a la lista
-    if (tratamientoInput) {
-      setTratamientos([...tratamientos, tratamientoInput])
-      setTratamientoInput('');
-    }
-  };
+  
 
   return (
     <>

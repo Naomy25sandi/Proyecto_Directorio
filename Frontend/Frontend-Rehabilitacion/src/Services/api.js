@@ -1,8 +1,8 @@
 import { traerCookie } from "./cookies";
 
-const API_URL = "http://127.0.0.1:8000/"
+const API_URL = "http://127.0.0.1:8000/" // creamos una constante que almacena nuestro URL de BE
 
-const token = traerCookie("token")
+const token = traerCookie("token") // creamos constante token para almacenar en una cookie el token
 // Método para obtener datos
 const GetData = async (endpoint) => {
     try {
@@ -12,7 +12,7 @@ const GetData = async (endpoint) => {
             mode: "cors",
             headers: {
                 "Content-type": "application/json",
-                // "Authorization": `Bearer ${token}`, //agregar token
+                // "Authorization": `Bearer ${token}`, //decidi no usarlo aca para que cualquier persona pudiera utilizarlo
             },
         });
         const datos = await response.json();
@@ -21,7 +21,7 @@ const GetData = async (endpoint) => {
         console.log(error)
     }
 };
-
+// metodo para crear 
 const postData = async (obj, endpoint) => {
     try {
 
@@ -48,7 +48,7 @@ const postData = async (obj, endpoint) => {
         return { success: false, error: 'Error en la conexión' };
     }
 };
-
+// metodo para crear usuarios
 const usuariosPost = async (obj, endpoint) => {
     try {
 
@@ -77,6 +77,7 @@ const usuariosPost = async (obj, endpoint) => {
 
 
 // Método para actualizar datos
+// /centros/api/centroUpdate/<int:id>
 const actualizaDatos = async (id, datos, endpoint) => {
     try {
 
@@ -120,7 +121,7 @@ const deleteProductos = async (id, endpoint) => {
         console.log(error);
     }
 };
-
+ // get para la barra de busqueda misma puede acceder cualquier usuario sin necesidad de autenticacion
 const getBusqueda = async (busqueda) => {
     try {
         const peticion = await fetch(`http://127.0.0.1:8000/centros/api/buscar/centros/?q=${busqueda}`);
